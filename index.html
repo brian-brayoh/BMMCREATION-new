@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BMM Creation — Creative digital agency specialising in website development, graphic design, branding, and digital marketing solutions." />
+  <title>BMM Creation | Web Design · Graphic Design · Branding</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+</head>
+<body>
+
+<!-- ─── Navigation ──────────────────────────────── -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">BMM<span>.</span>Creation</a>
+
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Get a Quote</a>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#services">Services</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#projects">Projects</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+  <a href="#contact" class="btn btn-primary">Get a Quote</a>
+</div>
+
+<!-- ─── Hero ─────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-bg-text">BMM</div>
+  <div class="container hero-grid">
+    <!-- Left -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        Available for new projects
+      </div>
+
+      <h1 class="hero-title">
+        We Build<br>
+        <em>Bold</em> Digital<br>
+        Presence.
+      </h1>
+
+      <div class="hero-services">
+        <span>Website Design</span>
+        <span>Graphic Design</span>
+        <span>Branding</span>
+        <span>Digital Solutions</span>
+      </div>
+
+      <p class="hero-desc">
+        BMM Creation helps businesses and organisations establish a powerful online identity — from stunning websites to eye-catching graphics.
+      </p>
+
+      <div class="hero-btns">
+        <a href="#portfolio" class="btn btn-primary">View Portfolio →</a>
+        <a href="#contact"   class="btn btn-outline">Request a Quote</a>
+      </div>
+    </div>
+
+    <!-- Right visual -->
+    <div class="hero-visual">
+      <div class="hero-blob"></div>
+      <div class="hero-float-cards">
+        <div class="float-card">
+          <div class="fc-label">Projects Delivered</div>
+          <div class="fc-val"><span>20</span>+ Sites</div>
+        </div>
+        <div class="float-card">
+          <div class="fc-label">Client Satisfaction</div>
+          <div class="fc-val"><span>98</span>%</div>
+        </div>
+        <div class="float-card">
+          <div class="fc-label">Designs Created</div>
+          <div class="fc-val"><span>50</span>+ Posters</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Services ──────────────────────────────────── -->
+<section id="services">
+  <div class="container">
+    <div class="section-head fade-up">
+      <div class="section-tag">What We Do</div>
+      <h2>Services Built for<br>Real Impact</h2>
+      <p>From a single poster to a full brand identity — we craft digital assets that get noticed.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon">🌐</div>
+        <h3>Website Design</h3>
+        <ul>
+          <li>Business websites</li>
+          <li>School websites</li>
+          <li>Landing pages</li>
+          <li>Portfolio websites</li>
+          <li>E-commerce stores</li>
+        </ul>
+      </div>
+
+      <div class="service-card fade-up" style="transition-delay:0.1s">
+        <div class="service-icon">🎨</div>
+        <h3>Graphic Design</h3>
+        <ul>
+          <li>Posters &amp; flyers</li>
+          <li>Event banners</li>
+          <li>Social media creatives</li>
+          <li>Print materials</li>
+          <li>Digital illustrations</li>
+        </ul>
+      </div>
+
+      <div class="service-card fade-up" style="transition-delay:0.2s">
+        <div class="service-icon">✦</div>
+        <h3>Branding</h3>
+        <ul>
+          <li>Logo design</li>
+          <li>Company profiles</li>
+          <li>Brand identity kits</li>
+          <li>Colour &amp; typography</li>
+          <li>Brand guidelines</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Portfolio ─────────────────────────────────── -->
+<section id="portfolio">
+  <div class="container">
+    <div class="section-head fade-up">
+      <div class="section-tag">Our Work</div>
+      <h2>Design Portfolio</h2>
+      <p>A showcase of posters, banners, and creatives crafted for clients across different industries.</p>
+    </div>
+
+    <div class="portfolio-filter fade-up">
+      <button class="filter-btn active" data-filter="All">All</button>
+      <button class="filter-btn" data-filter="Poster">Posters</button>
+      <button class="filter-btn" data-filter="Banner">Banners</button>
+      <button class="filter-btn" data-filter="Flyer">Flyers</button>
+      <button class="filter-btn" data-filter="Creatives">Creatives</button>
+    </div>
+
+    <div class="portfolio-grid" id="portfolioGrid">
+      <!-- Rendered by JS -->
+    </div>
+
+    <!-- HOW TO ADD YOUR IMAGES:
+         1. Export your Canva design as JPG/PNG
+         2. Save it to:  assets/images/posters/my-poster.jpg
+         3. In main.js, update the portfolioItems array:
+            { id:7, title:'My New Poster', tag:'Poster', desc:'Short description.', img:'assets/images/posters/my-poster.jpg' }
+    -->
+  </div>
+</section>
+
+<!-- ─── Lightbox ───────────────────────────────────── -->
+<div id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lbImg" class="lightbox-img" src="" alt="" />
+    <div class="lightbox-info">
+      <span class="tag" id="lbTag" style="display:inline-block;background:var(--accent);color:#0a0a0f;padding:0.2rem 0.6rem;border-radius:4px;font-size:0.75rem;font-weight:700;margin-bottom:0.75rem;font-family:var(--font-head)"></span>
+      <h3 id="lbTitle"></h3>
+      <p id="lbDesc" style="margin-top:0.5rem;font-size:0.9rem;"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── Website Projects ───────────────────────────── -->
+<section id="projects">
+  <div class="container">
+    <div class="section-head fade-up">
+      <div class="section-tag">Web Projects</div>
+      <h2>Websites We've Built</h2>
+      <p>Real sites delivered for schools, businesses, and organisations. Screenshots shown where live URLs are pending.</p>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="project-card fade-up">
+        <div class="project-thumb">
+          <!-- Replace with: <img src="assets/images/websites/muranga-tti.jpg" alt="Murang'a TTI"> -->
+          <div class="project-placeholder">
+            <span class="ph-icon">🏫</span>
+            <span style="font-size:0.8rem;color:var(--muted)">Add screenshot</span>
+          </div>
+          <span class="project-type-badge">School</span>
+        </div>
+        <div class="project-info">
+          <h3>Murang'a TTI Website</h3>
+          <div class="project-type">School Website</div>
+          <p>A comprehensive school website featuring admissions, departments, news, and student portal integration.</p>
+          <a href="#" class="project-link">View Project →</a>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" style="transition-delay:0.1s">
+        <div class="project-thumb">
+          <div class="project-placeholder">
+            <span class="ph-icon">🏢</span>
+            <span style="font-size:0.8rem;color:var(--muted)">Add screenshot</span>
+          </div>
+          <span class="project-type-badge">Business</span>
+        </div>
+        <div class="project-info">
+          <h3>Local Business Website</h3>
+          <div class="project-type">Business Website</div>
+          <p>A modern multi-page website for a local business with service listings, gallery, and contact form.</p>
+          <a href="#" class="project-link">View Project →</a>
+        </div>
+      </div>
+
+      <div class="project-card fade-up" style="transition-delay:0.2s">
+        <div class="project-thumb">
+          <div class="project-placeholder">
+            <span class="ph-icon">📄</span>
+            <span style="font-size:0.8rem;color:var(--muted)">Add screenshot</span>
+          </div>
+          <span class="project-type-badge">Portfolio</span>
+        </div>
+        <div class="project-info">
+          <h3>Creative Portfolio Site</h3>
+          <div class="project-type">Portfolio Website</div>
+          <p>A sleek personal portfolio with animated project cards, skills showcase, and downloadable CV section.</p>
+          <a href="#" class="project-link">View Project →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── About ─────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <!-- Text -->
+      <div class="about-text fade-up">
+        <div class="section-tag">About Us</div>
+        <h2>Creative Solutions,<br>Real Results.</h2>
+        <p>
+          BMM Creation is a creative digital agency specialising in website development, graphic design, branding, and digital marketing solutions.
+        </p>
+        <p>
+          We work with businesses, schools, churches, and organisations to help them build a strong and consistent digital presence — from a single eye-catching poster to a full brand overhaul.
+        </p>
+        <p>
+          Whether you're launching a new brand or refreshing an existing one, we bring creativity, precision, and speed to every project.
+        </p>
+
+        <div class="skills-list">
+          <span class="skill-tag">HTML / CSS / JS</span>
+          <span class="skill-tag">Canva</span>
+          <span class="skill-tag">WordPress</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Adobe Illustrator</span>
+          <span class="skill-tag">SEO</span>
+          <span class="skill-tag">Responsive Design</span>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat-box">
+            <span class="stat-num">20+</span>
+            <span class="stat-label">Websites Delivered</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Designs Created</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">3+</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-num">98%</span>
+            <span class="stat-label">Client Satisfaction</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Visual (hidden on mobile) -->
+      <div class="about-visual fade-up">
+        <div class="about-img-wrap">
+          <!-- Replace with your own image: <img src="assets/images/about.jpg" alt="BMM Creation"> -->
+          <div style="text-align:center;color:var(--muted);">
+            <div style="font-size:5rem;opacity:0.2">⚡</div>
+            <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;opacity:0.15">BMM Creation</div>
+          </div>
+        </div>
+        <div class="about-accent-box">
+          <span class="num">100%</span>
+          <span class="lbl">Client-First Approach</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Testimonials ───────────────────────────────── -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-head fade-up">
+      <div class="section-tag">Testimonials</div>
+      <h2>What Clients Say</h2>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card fade-up">
+        <div class="stars">★★★★★</div>
+        <div class="quote-mark">"</div>
+        <p>Excellent website and branding services. BMM Creation delivered beyond our expectations — the design was clean, professional, and ready ahead of schedule.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">JK</div>
+          <div>
+            <div class="author-name">John K.</div>
+            <div class="author-role">Business Owner</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up" style="transition-delay:0.1s">
+        <div class="stars">★★★★★</div>
+        <div class="quote-mark">"</div>
+        <p>They created our school website from scratch. It looks great on mobile and desktop. Our students and parents love the new online portal. Highly recommended!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SM</div>
+          <div>
+            <div class="author-name">Sarah M.</div>
+            <div class="author-role">School Principal</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up" style="transition-delay:0.2s">
+        <div class="stars">★★★★★</div>
+        <div class="quote-mark">"</div>
+        <p>The event posters BMM Creation designed for our church conference were stunning. Everyone was asking who made them. We'll definitely work together again!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">PO</div>
+          <div>
+            <div class="author-name">Pastor O.</div>
+            <div class="author-role">Church Coordinator</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Contact ────────────────────────────────────── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <!-- Info -->
+      <div class="contact-info fade-up">
+        <div class="section-tag">Get In Touch</div>
+        <h2>Let's Build Something Great</h2>
+        <p style="margin:1rem 0 2.5rem;font-size:1rem;">Have a project in mind? Fill in the form and we'll get back to you within 24 hours.</p>
+
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-item-text">
+            <div class="label">Email</div>
+            <!-- Replace with your email -->
+            <div class="val">hello@bmmcreation.co.ke</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-item-text">
+            <div class="label">WhatsApp / Phone</div>
+            <!-- Replace with your number -->
+            <div class="val">+254 700 000 000</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-item-text">
+            <div class="label">Location</div>
+            <div class="val">Kenya (Remote-friendly)</div>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">⏰</div>
+          <div class="contact-item-text">
+            <div class="label">Response Time</div>
+            <div class="val">Within 24 hours</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="fade-up" style="transition-delay:0.15s">
+        <!--
+          NETLIFY DEPLOYMENT: Add  data-netlify="true"  to the form tag below.
+          FORMSPREE:         Change action to "https://formspree.io/f/YOUR_FORM_ID"
+        -->
+        <form class="contact-form" id="contactForm" name="contact" method="POST" action="#">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" placeholder="John Kamau" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone / WhatsApp</label>
+              <input type="tel" id="phone" name="phone" placeholder="+254 700 000 000" />
+            </div>
+            <div class="form-group">
+              <label for="service">Service Needed</label>
+              <input type="text" id="service" name="service" placeholder="e.g. Website Design" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Your Message *</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us about your project…" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="align-self:flex-start;border-radius:var(--radius);">
+            Send Message →
+          </button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          ✅ &nbsp;Thank you! Your message has been sent. We'll be in touch within 24 hours.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Footer ─────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">BMM<span style="color:var(--accent)">.</span>Creation</a>
+        <p>A creative digital agency helping businesses and organisations build a powerful digital presence — from stunning websites to bold graphic design.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Website Design</a></li>
+          <li><a href="#services">Graphic Design</a></li>
+          <li><a href="#services">Branding</a></li>
+          <li><a href="#services">Digital Marketing</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p style="color:var(--muted)">© <span id="year"></span> BMM Creation. All rights reserved.</p>
+      <div class="social-links">
+        <!-- Replace # with your real links -->
+        <a href="#" class="social-link" aria-label="WhatsApp">💬</a>
+        <a href="#" class="social-link" aria-label="Facebook">f</a>
+        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+        <a href="#" class="social-link" aria-label="LinkedIn">in</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── WhatsApp Float ─────────────────────────────── -->
+<!-- Replace YOURNUMBER with your full number e.g. 254700000000 (no + sign) -->
+<a href="https://wa.me/254700000000?text=Hi%20BMM%20Creation%2C%20I%27d%20like%20to%20discuss%20a%20project."
+   class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <span class="wa-icon">💬</span>
+  <span>Chat on WhatsApp</span>
+</a>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
