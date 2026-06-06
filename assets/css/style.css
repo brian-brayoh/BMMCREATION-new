@@ -624,3 +624,18 @@ footer {
   .portfolio-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
+/* ─── Stability: new grid sections auto-stack on tablet ── */
+@media (max-width: 1024px) {
+  .pricing-grid,
+  .process-grid,
+  [class$="-grid"] { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─── Stability: everything goes single-column on mobile ── */
+@media (max-width: 768px) {
+  .pricing-grid,
+  .faq-grid,
+  [class$="-grid"] { grid-template-columns: 1fr; }
+
+  .mobile-menu a { font-size: 1.4rem; gap: 1.5rem; }
+}
