@@ -25,16 +25,21 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
 // ── Portfolio data
-const imageBase = 'assets/{css,js,images/{posters,websites}}';
+const imageBase = 'assets/images/posters';
 const poster = fileName => `${imageBase}/${encodeURIComponent(fileName)}`;
 
 const portfolioItems = [
-  { id: 1, title: 'Church Conference Poster', tag: 'Poster', desc: 'Designed using Canva for a church event. Bold typography and vibrant colours communicate the event energy.', img: poster('Black Bold Happy Birthday Instagram Post.jpg') },
-  { id: 2, title: 'Business Grand Opening', tag: 'Poster', desc: 'Eye-catching flyer for a local business launch event with branded colours.', img: poster('Eid Al-Fitr.jpg') },
-  { id: 3, title: 'Youth Summit Banner', tag: 'Banner', desc: 'Large-format event banner for a youth conference. Clean, modern design.', img: poster('Green White Simple Merry Christmas Poster (Portrait) (1).jpg') },
-  { id: 4, title: 'Social Media Pack', tag: 'Creatives', desc: 'Set of social media posts designed for Instagram and Facebook promotions.', img: poster('PosterFree.jpg') },
-  { id: 5, title: 'School Promo Flyer', tag: 'Flyer', desc: 'Admission promotional flyer for a secondary school, designed in Canva.', img: poster('MAY INTAKE  2026 MTTI.jpg') },
-  { id: 6, title: 'Corporate Event Banner', tag: 'Banner', desc: 'Professional banner designed for a corporate annual gala dinner.', img: poster('MTTI MOE.jpg') },
+  { id: 1, title: 'Automotive Department', tag: 'Poster', desc: 'Professional poster design for automotive department featuring modern layout and engaging visuals.', img: poster('Automotive depertment.jpg') },
+  { id: 2, title: 'Happy Birthday Poster', tag: 'Poster', desc: 'Bold and colorful birthday poster with eye-catching typography and vibrant design elements.', img: poster('Black Bold Happy Birthday Instagram Post.jpg') },
+  { id: 3, title: 'DUAL TVET Program', tag: 'Poster', desc: 'Informative poster promoting DUAL TVET training programs with clear messaging and professional design.', img: poster('DUAL TVET.jpg') },
+  { id: 4, title: 'Easter Sunday Celebration', tag: 'Poster', desc: 'Festive Easter Sunday event poster with vibrant colors and celebratory design approach.', img: poster('easter sunday.jpg') },
+  { id: 5, title: 'Eid Al-Fitr Greeting', tag: 'Banner', desc: 'Elegant Eid Al-Fitr greeting poster with cultural design elements and warm color palette.', img: poster('Eid Al-Fitr.jpg') },
+  { id: 6, title: 'Christmas Wishes Poster', tag: 'Banner', desc: 'Green and white modern Christmas poster with clean design and festive messaging.', img: poster('Green White Simple Merry Christmas Poster (Portrait) (1).jpg') },
+  { id: 7, title: 'Hospitality Services', tag: 'Flyer', desc: 'Professional hospitality services promotional poster highlighting key offerings and benefits.', img: poster('Hospitality.jpg') },
+  { id: 8, title: 'MTTI May Intake 2026', tag: 'Flyer', desc: 'Admission promotional flyer for MTTI May 2026 intake with enrollment information and details.', img: poster('MAY INTAKE  2026 MTTI.jpg') },
+  { id: 9, title: 'MTTI Ministry Partnership', tag: 'Poster', desc: 'Official MTTI and Ministry of Education partnership announcement poster with professional branding.', img: poster('MTTI MOE.jpg') },
+  { id: 10, title: 'Free Design Template', tag: 'Creatives', desc: 'Creative free design template showcasing modern design trends and professional layout.', img: poster('PosterFree.jpg') },
+  { id: 11, title: 'Modern Birthday Story', tag: 'Creatives', desc: 'Modern happy birthday design with white and black minimalist aesthetic for social media.', img: poster('White and Black Modern Happy Birthday Your Story.jpg') },
 ];
 
 // ── Render portfolio grid
