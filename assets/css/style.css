@@ -253,7 +253,7 @@ nav.scrolled {
 }
 .portfolio-item {
   position: relative; border-radius: var(--radius); overflow: hidden;
-  aspect-ratio: 3/4; cursor: pointer; group: true;
+  aspect-ratio: 3/4; cursor: pointer;
   background: var(--bg3); border: 1px solid var(--border);
 }
 .portfolio-item img {
@@ -417,8 +417,60 @@ nav.scrolled {
 .author-role { font-size: 0.78rem; color: var(--muted); }
 .stars { color: var(--accent); font-size: 0.8rem; margin-bottom: 1rem; letter-spacing: 2px; }
 
+/* ─── Pricing ────────────────────────────────────── */
+#pricing { background: var(--bg2); }
+.pricing-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+}
+.pricing-card {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 1.75rem;
+  display: flex; flex-direction: column; gap: 1rem;
+  transition: var(--transition);
+}
+.pricing-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 14px 30px rgba(6,182,212,0.15); }
+.pricing-card-featured { border-color: var(--accent); background: linear-gradient(180deg, rgba(6,182,212,0.08), rgba(15,23,42,0.9)); }
+.pricing-badge {
+  display: inline-flex; align-self: flex-start; border: 1px solid var(--border); border-radius: 999px;
+  padding: 0.35rem 0.75rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent);
+  background: rgba(6,182,212,0.08);
+}
+.pricing-card h3 { margin-bottom: 0.2rem; }
+.price { font-family: var(--font-head); font-size: 1.5rem; font-weight: 800; color: var(--text); }
+.pricing-card ul { display: flex; flex-direction: column; gap: 0.45rem; }
+.pricing-card li { color: var(--muted); font-size: 0.95rem; }
+.pricing-card li::before { content: '✓'; color: var(--accent); margin-right: 0.5rem; }
+
+/* ─── Process ─────────────────────────────────────── */
+#process { background: var(--bg); }
+.process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.process-card {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 1.5rem; transition: var(--transition);
+}
+.process-card:hover { transform: translateY(-6px); border-color: var(--accent); box-shadow: 0 14px 30px rgba(6,182,212,0.15); }
+.process-step {
+  display: inline-block; font-family: var(--font-head); font-size: 0.85rem; font-weight: 800;
+  color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem;
+}
+.process-card h3 { margin-bottom: 0.5rem; }
+.process-card p { font-size: 0.95rem; color: var(--muted); }
+
+/* ─── FAQ ─────────────────────────────────────────── */
+#faq { background: var(--bg2); }
+.faq-grid { display: grid; gap: 1rem; max-width: 900px; }
+.faq-item {
+  background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+}
+.faq-item summary {
+  cursor: pointer; list-style: none; font-family: var(--font-head); font-weight: 700; color: var(--text);
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item p { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; }
+
 /* ─── Contact ────────────────────────────────────── */
-#contact { background: var(--bg); }
+#contact { background: var(--bg2); }
 .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 6rem; align-items: start; }
 .contact-info { padding-top: 1rem; }
 .contact-item { display: flex; gap: 1rem; margin-bottom: 2rem; align-items: flex-start; }
@@ -557,6 +609,7 @@ footer {
   .nav-links, .nav-cta .btn { display: none; }
   .hamburger { display: flex; }
   .services-grid { grid-template-columns: 1fr; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
   .portfolio-grid { grid-template-columns: 1fr 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
@@ -567,6 +620,7 @@ footer {
   .about-stats { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 480px) {
+  .process-grid { grid-template-columns: 1fr; }
   .portfolio-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
