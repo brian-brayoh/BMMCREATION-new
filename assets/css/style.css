@@ -2,19 +2,25 @@
 
 /* ─── CSS Variables ─────────────────────────────── */
 :root {
-  --bg:        #0f172a;
-  --bg2:       #1a2847;
-  --bg3:       #1e3a5f;
-  --accent:    #06b6d4;
-  --accent2:   #0ea5e9;
-  --accent3:   #06d6a0;
-  --text:      #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --muted:     #94a3b8;
-  --border:    rgba(6,182,212,0.15);
-  --card-bg:   rgba(15,23,42,0.6);
-  --gradient-start: #06b6d4;
-  --gradient-end: #0ea5e9;
+  --bg:        #0b1220;
+  --bg2:       #111b33;
+  --bg3:       #152447;
+
+  /* More attractive, high-conversion accent palette */
+  --accent:    #ff3b7a; /* hot pink */
+  --accent2:   #7c3aed; /* purple */
+  --accent3:   #06d6a0; /* mint (used in some highlights) */
+
+  --text:      #f5f7ff;
+  --text-secondary: #d7dbff;
+  --muted:     #9aa6c7;
+
+  --border:    rgba(255,59,122,0.18);
+  --card-bg:   rgba(9,14,28,0.72);
+
+  --gradient-start: #ff3b7a;
+  --gradient-end: #7c3aed;
+
   --radius:    12px;
   --radius-lg: 24px;
   --font-head: 'Syne', sans-serif;
