@@ -8,16 +8,16 @@
 :root {
   /* Brand colours, taken from the BMM Creations logo:
      teal #1c9dba, green #56b88f, lime #cce796, navy #2d395f */
-  --board:     #071a24;  /* deep navy board, page background */
-  --board-2:   #0a2331;  /* raised layer, alt sections       */
-  --board-3:   #103142;  /* inputs, cards                    */
+  --board:     #134056;  /* deep navy board, page background */
+  --board-2:   #174a62;  /* raised layer, alt sections       */
+  --board-3:   #1e5670;  /* inputs, cards                    */
   --copper:    #3cc2b4;  /* teal-green trace, the accent     */
   --copper-hi: #cfe99a;  /* logo lime, highlights            */
   --copper-grad: linear-gradient(135deg, #1c9dba 0%, #56b88f 55%, #b9df8f 100%);
   --emerald:   #1c9dba;  /* logo teal, glows                 */
   --silk:      #f3f7f1;  /* silkscreen white, main text     */
-  --muted:     #b0c7cf;  /* secondary text                  */
-  --line:      rgba(243, 247, 241, 0.13);
+  --muted:     #c3d6dd;  /* secondary text                  */
+  --line:      rgba(243, 247, 241, 0.16);
   --led:       #3dff8f;
 
   --display: 'Archivo', 'Arial Narrow', sans-serif;
@@ -75,7 +75,7 @@ p { margin: 0; }
 /* ─── Header ────────────────────────────────────────── */
 .site-header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(7, 26, 36, .82);
+  background: rgba(19, 64, 86, .88);
   backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid transparent;
   transition: border-color .3s;
@@ -382,7 +382,7 @@ p { margin: 0; }
   background-size: 5px 5px; background-repeat: no-repeat; padding-right: 2.5rem;
 }
 .field textarea { resize: vertical; min-height: 8rem; }
-.field input::placeholder, .field textarea::placeholder { color: #6d8796; }
+.field input::placeholder, .field textarea::placeholder { color: #8aa6b3; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--copper); box-shadow: 0 0 0 3px rgba(60,194,180,.25); }
 .contact-form .btn { justify-self: start; margin-top: .4rem; }
 .form-status { min-height: 1.5em; font-size: .9375rem; }

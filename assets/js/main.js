@@ -7,10 +7,21 @@ document.documentElement.classList.add('js');
   const traces = document.querySelectorAll('.traces path');
   const pads   = document.querySelectorAll('.pads circle');
   const silk   = document.querySelectorAll('.silk text');
+  const svg = document.querySelector('.schematic svg');
+  const pulses = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  pulses.setAttribute('class', 'pulses');
   traces.forEach((p, i) => {
-    p.style.setProperty('--len', Math.ceil(p.getTotalLength()));
+    const len = Math.ceil(p.getTotalLength());
+    p.style.setProperty('--len', len);
     p.style.setProperty('--i', i);
+    // A bright "current" pulse that keeps travelling along each trace into the chip
+    const pulse = p.cloneNode();
+    pulse.style.setProperty('--len', len);
+    pulse.style.setProperty('--i', i);
+    pulse.style.setProperty('--dur', (len / 140 + 1.8).toFixed(2) + 's');
+    pulses.appendChild(pulse);
   });
+  svg.insertBefore(pulses, svg.querySelector('.pads'));
   pads.forEach((c, i) => c.style.setProperty('--i', i));
   silk.forEach((t, i) => t.style.setProperty('--i', i));
   requestAnimationFrame(() => requestAnimationFrame(() =>
