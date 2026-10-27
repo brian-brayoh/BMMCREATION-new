@@ -1,122 +1,122 @@
-/* ─── BMM Creation — main.js ─────────────────────── */
+/* ─── BMM Creation, main.js ─────────────────────────── */
 
-// ── Navbar scroll effect
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
+document.documentElement.classList.add('js');
 
-// ── Mobile menu
-const hamburger  = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-const mobileClose= document.getElementById('mobileClose');
-hamburger?.addEventListener('click',  () => mobileMenu.classList.add('open'));
-mobileClose?.addEventListener('click',() => mobileMenu.classList.remove('open'));
-mobileMenu?.querySelectorAll('a').forEach(a =>
-  a.addEventListener('click', () => mobileMenu.classList.remove('open'))
-);
-
-// ── Scroll-reveal (IntersectionObserver)
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+/* ── Hero schematic: measure each trace, then power on ── */
+(() => {
+  const traces = document.querySelectorAll('.traces path');
+  const pads   = document.querySelectorAll('.pads circle');
+  const silk   = document.querySelectorAll('.silk text');
+  traces.forEach((p, i) => {
+    p.style.setProperty('--len', Math.ceil(p.getTotalLength()));
+    p.style.setProperty('--i', i);
   });
-}, { threshold: 0.12 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  pads.forEach((c, i) => c.style.setProperty('--i', i));
+  silk.forEach((t, i) => t.style.setProperty('--i', i));
+  requestAnimationFrame(() => requestAnimationFrame(() =>
+    document.documentElement.classList.add('powered')));
+})();
 
-// ── Portfolio data
-const imageBase = 'assets/images/posters';
-const poster = fileName => `${imageBase}/${encodeURIComponent(fileName)}`;
+/* ── Header border once scrolled ── */
+const header = document.getElementById('siteHeader');
+const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
 
-const portfolioItems = [
-  { id: 1, title: 'Automotive Department', tag: 'Poster', desc: 'Professional poster design for automotive department featuring modern layout and engaging visuals.', img: poster('Automotive depertment.jpg') },
-  { id: 2, title: 'Happy Birthday Poster', tag: 'Poster', desc: 'Bold and colorful birthday poster with eye-catching typography and vibrant design elements.', img: poster('Black Bold Happy Birthday Instagram Post.jpg') },
-  { id: 3, title: 'DUAL TVET Program', tag: 'Poster', desc: 'Informative poster promoting DUAL TVET training programs with clear messaging and professional design.', img: poster('DUAL TVET.jpg') },
-  { id: 4, title: 'Easter Sunday Celebration', tag: 'Poster', desc: 'Festive Easter Sunday event poster with vibrant colors and celebratory design approach.', img: poster('easter sunday.jpg') },
-  { id: 5, title: 'Eid Al-Fitr Greeting', tag: 'Banner', desc: 'Elegant Eid Al-Fitr greeting poster with cultural design elements and warm color palette.', img: poster('Eid Al-Fitr.jpg') },
-  { id: 6, title: 'Christmas Wishes Poster', tag: 'Banner', desc: 'Green and white modern Christmas poster with clean design and festive messaging.', img: poster('Green White Simple Merry Christmas Poster (Portrait) (1).jpg') },
-  { id: 7, title: 'Hospitality Services', tag: 'Flyer', desc: 'Professional hospitality services promotional poster highlighting key offerings and benefits.', img: poster('Hospitality.jpg') },
-  { id: 8, title: 'MTTI May Intake 2026', tag: 'Flyer', desc: 'Admission promotional flyer for MTTI May 2026 intake with enrollment information and details.', img: poster('MAY INTAKE  2026 MTTI.jpg') },
-  { id: 9, title: 'MTTI Ministry Partnership', tag: 'Poster', desc: 'Official MTTI and Ministry of Education partnership announcement poster with professional branding.', img: poster('MTTI MOE.jpg') },
-  { id: 10, title: 'Free Design Template', tag: 'Creatives', desc: 'Creative free design template showcasing modern design trends and professional layout.', img: poster('PosterFree.jpg') },
-  { id: 11, title: 'Modern Birthday Story', tag: 'Creatives', desc: 'Modern happy birthday design with white and black minimalist aesthetic for social media.', img: poster('White and Black Modern Happy Birthday Your Story.jpg') },
+/* ── Mobile menu ── */
+const toggle = document.getElementById('menuToggle');
+const nav    = document.getElementById('mainNav');
+const setMenu = open => {
+  toggle.setAttribute('aria-expanded', String(open));
+  nav.classList.toggle('is-open', open);
+};
+toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+/* ── Design gallery ──
+   To add a poster:
+   1. Put a 720px-wide copy in assets/images/posters/thumbs/name.jpg
+   2. Put a larger copy (about 1600px) at assets/images/posters/thumbs/name-lg.jpg
+   3. Add { file: 'name', title: 'What it is' } below.                       */
+const posters = [
+  { file: 'mtti-may-intake', title: "May intake campaign, Murang'a TTI" },
+  { file: 'automotive',      title: 'Mechanical and Automotive department poster' },
+  { file: 'dual-tvet',       title: 'Dual training TVET courses poster' },
+  { file: 'mtti-moe',        title: 'Graduate tracer survey for the State Department for TVET' },
+  { file: 'hospitality',     title: 'Hospitality and Institution Management department poster' },
+  { file: 'easter',          title: 'Easter Sunday greeting with intake offer' },
+  { file: 'christmas',       title: 'Christmas and New Year card for Ndia TVC' },
+  { file: 'poster-free',     title: 'Good Friday message' },
+  { file: 'eid',             title: 'Eid al-Fitr greeting' },
+  { file: 'birthday-bold',   title: 'Birthday post, bold type' },
+  { file: 'birthday-story',  title: 'Birthday story, vertical format' },
 ];
 
-// ── Render portfolio grid
-function renderPortfolio(filter = 'All') {
-  const grid = document.getElementById('portfolioGrid');
-  if (!grid) return;
-  const items = filter === 'All' ? portfolioItems : portfolioItems.filter(i => i.tag === filter);
-  grid.innerHTML = items.map(item => `
-    <div class="portfolio-item" data-id="${item.id}" onclick="openLightbox(${item.id})">
-      ${item.img
-        ? `<img src="${item.img}" alt="${item.title}" loading="lazy">`
-        : `<div class="portfolio-placeholder"><div class="ph-icon">🎨</div><span>Add your poster here</span></div>`}
-      <div class="portfolio-overlay">
-        <span class="tag">${item.tag}</span>
-        <h4>${item.title}</h4>
-        <p>${item.desc}</p>
-      </div>
-    </div>
-  `).join('');
-}
-renderPortfolio();
+const base = 'assets/images/posters/thumbs/';
+const gallery = document.getElementById('gallery');
+gallery.innerHTML = posters.map((p, i) => `
+  <button type="button" data-i="${i}" aria-label="View larger: ${p.title}">
+    <img src="${base}${p.file}.jpg" alt="${p.title}" loading="lazy" decoding="async">
+  </button>`).join('');
 
-// ── Filter buttons
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderPortfolio(btn.dataset.filter);
-  });
+/* ── Lightbox ── */
+const lb      = document.getElementById('lightbox');
+const lbImg   = document.getElementById('lbImg');
+const lbCap   = document.getElementById('lbCaption');
+let current = 0;
+
+const show = i => {
+  current = (i + posters.length) % posters.length;
+  const p = posters[current];
+  lbImg.src = `${base}${p.file}-lg.jpg`;
+  lbImg.alt = p.title;
+  lbCap.textContent = `${p.title}  (${current + 1} of ${posters.length})`;
+};
+
+gallery.addEventListener('click', e => {
+  const btn = e.target.closest('button[data-i]');
+  if (!btn) return;
+  show(Number(btn.dataset.i));
+  lb.showModal();
+});
+document.getElementById('lbClose').addEventListener('click', () => lb.close());
+document.getElementById('lbPrev').addEventListener('click', () => show(current - 1));
+document.getElementById('lbNext').addEventListener('click', () => show(current + 1));
+lb.addEventListener('click', e => { if (e.target === lb || e.target.tagName === 'FIGURE') lb.close(); });
+lb.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft')  show(current - 1);
+  if (e.key === 'ArrowRight') show(current + 1);
 });
 
-// ── Lightbox
-function openLightbox(id) {
-  const item = portfolioItems.find(i => i.id === id);
-  if (!item) return;
-  const lb = document.getElementById('lightbox');
-  document.getElementById('lbImg').src   = item.img || '';
-  document.getElementById('lbImg').alt   = item.title;
-  document.getElementById('lbImg').style.display = item.img ? 'block' : 'none';
-  document.getElementById('lbTitle').textContent = item.title;
-  document.getElementById('lbDesc').textContent  = item.desc;
-  document.getElementById('lbTag').textContent   = item.tag;
-  lb.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeLightbox() {
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow = '';
-}
-document.getElementById('lightbox')?.addEventListener('click', e => {
-  if (e.target === e.currentTarget) closeLightbox();
-});
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-
-// ── Contact form (Netlify / Formspree compatible)
-const form = document.getElementById('contactForm');
-form?.addEventListener('submit', async e => {
+/* ── Contact form (Formspree) ── */
+const form   = document.getElementById('contactForm');
+const status = document.getElementById('formStatus');
+form.addEventListener('submit', async e => {
   e.preventDefault();
   const btn = form.querySelector('button[type="submit"]');
-  btn.textContent = 'Sending…'; btn.disabled = true;
-
-  // If using Formspree replace YOUR_FORM_ID; if Netlify just submit normally
-  const action = form.getAttribute('action') || '#';
-  if (action === '#') {
-    // Demo: show success after 1s
-    await new Promise(r => setTimeout(r, 1000));
-    form.style.display = 'none';
-    document.getElementById('formSuccess').style.display = 'block';
-    return;
-  }
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  status.className = 'form-status';
+  status.textContent = '';
   try {
-    const res = await fetch(action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-    if (res.ok) { form.style.display = 'none'; document.getElementById('formSuccess').style.display = 'block'; }
-    else { btn.textContent = 'Send Message'; btn.disabled = false; alert('Something went wrong. Please try again.'); }
-  } catch { btn.textContent = 'Send Message'; btn.disabled = false; }
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) throw new Error();
+    form.reset();
+    status.classList.add('ok');
+    status.textContent = "Message sent. I'll reply within 24 hours.";
+  } catch {
+    status.classList.add('err');
+    status.textContent = "The message didn't send. Check your connection and try again, or reach me on WhatsApp.";
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Send message';
+  }
 });
 
-// ── Year in footer
-const yearEl = document.getElementById('year');
-if (yearEl) yearEl.textContent = new Date().getFullYear();
+/* ── Footer year ── */
+document.getElementById('year').textContent = new Date().getFullYear();
