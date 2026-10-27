@@ -2,30 +2,85 @@
 
 document.documentElement.classList.add('js');
 
-/* ── Hero schematic: measure each trace, then power on ── */
+/* ── Hero schematic ───────────────────────────────────
+   1. On load the traces draw in from each pin and the chip powers on.
+   2. Then signals keep flowing: each wire fires a glowing pulse, sometimes
+      into the chip, sometimes out to its pin. Whatever it reaches flashes,
+      and the pin's label lights up.                                      */
 (() => {
-  const traces = document.querySelectorAll('.traces path');
-  const pads   = document.querySelectorAll('.pads circle');
-  const silk   = document.querySelectorAll('.silk text');
   const svg = document.querySelector('.schematic svg');
-  const pulses = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-  pulses.setAttribute('class', 'pulses');
+  if (!svg) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  const traces = [...svg.querySelectorAll('.traces path')];
+  const pads   = [...svg.querySelectorAll('.pads circle')];
+  const labels = [...svg.querySelectorAll('.silk text')];
+  const chip   = svg.querySelector('.chip-body');
+  const led    = svg.querySelector('.chip-led');
+
   traces.forEach((p, i) => {
-    const len = Math.ceil(p.getTotalLength());
-    p.style.setProperty('--len', len);
+    p.style.setProperty('--len', Math.ceil(p.getTotalLength()));
     p.style.setProperty('--i', i);
-    // A bright "current" pulse that keeps travelling along each trace into the chip
-    const pulse = p.cloneNode();
-    pulse.style.setProperty('--len', len);
-    pulse.style.setProperty('--i', i);
-    pulse.style.setProperty('--dur', (len / 140 + 1.8).toFixed(2) + 's');
-    pulses.appendChild(pulse);
   });
-  svg.insertBefore(pulses, svg.querySelector('.pads'));
   pads.forEach((c, i) => c.style.setProperty('--i', i));
-  silk.forEach((t, i) => t.style.setProperty('--i', i));
+  labels.forEach((t, i) => t.style.setProperty('--i', i));
   requestAnimationFrame(() => requestAnimationFrame(() =>
     document.documentElement.classList.add('powered')));
+
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // One tail + one bright head per trace
+  const layer = document.createElementNS(NS, 'g');
+  layer.setAttribute('class', 'pulses');
+  svg.insertBefore(layer, svg.querySelector('.pads'));
+  const TAIL = 56, HEAD = 10;
+  const wires = traces.map(p => {
+    const len = p.getTotalLength();
+    const mk = (cls, dash) => {
+      const el = document.createElementNS(NS, 'path');
+      el.setAttribute('d', p.getAttribute('d'));
+      el.setAttribute('class', cls);
+      el.style.strokeDasharray = `${dash} ${len + 200}`;
+      el.style.strokeDashoffset = dash;           // parked before the start
+      layer.appendChild(el);
+      return el;
+    };
+    return { len, tail: mk('pulse-tail', TAIL), head: mk('pulse-head', HEAD) };
+  });
+
+  const flash = (el, glow) => el && el.animate(
+    [{ filter: 'none' }, { filter: `drop-shadow(0 0 ${glow}px #cfe99a) brightness(1.6)` }, { filter: 'none' }],
+    { duration: 520, easing: 'ease-out' });
+  const lightLabel = el => el && el.animate(
+    [{ fill: '#f3f7f1' }, { fill: '#cfe99a', offset: .25 }, { fill: '#f3f7f1' }],
+    { duration: 900, easing: 'ease-out' });
+  const pop = el => el && el.animate(
+    [{ transform: 'scale(1)' }, { transform: 'scale(1.7)' }, { transform: 'scale(1)' }],
+    { duration: 450, easing: 'ease-out' });
+
+  let visible = true;
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(svg);
+
+  const fire = i => {
+    if (!visible || document.hidden) return setTimeout(() => fire(i), 800);
+    const { len, tail, head } = wires[i];
+    const inbound = Math.random() < 0.6;          // most traffic flows into the chip
+    const duration = 900 + len * 3.2;
+    // dashoffset positions: inbound runs pin → chip, outbound chip → pin
+    const t = inbound ? [TAIL, -len] : [-len, TAIL];
+    const h = inbound ? [HEAD, -len - (TAIL - HEAD)] : [-len, TAIL];   // head rides the leading end
+    const opts = { duration, easing: 'cubic-bezier(.45,.05,.55,.95)', fill: 'forwards' };
+    if (inbound) { lightLabel(labels[i]); pop(pads[i]); }
+    tail.animate([{ strokeDashoffset: t[0] }, { strokeDashoffset: t[1] }], opts);
+    const run = head.animate([{ strokeDashoffset: h[0] }, { strokeDashoffset: h[1] }], opts);
+    run.onfinish = () => {
+      if (inbound) { flash(chip, 18); flash(led, 10); }
+      else { pop(pads[i]); flash(pads[i], 10); lightLabel(labels[i]); }
+      setTimeout(() => fire(i), 400 + Math.random() * 2600);
+    };
+  };
+
+  // start once the power-on sequence has finished, staggered per wire
+  setTimeout(() => traces.forEach((_, i) => setTimeout(() => fire(i), i * 330 + Math.random() * 600)), 2300);
 })();
 
 /* ── Header border once scrolled ── */
