@@ -313,18 +313,23 @@ p { margin: 0; }
 @media (max-width: 420px) { .toolkit dl { grid-template-columns: 1fr; gap: .2rem; } .toolkit dd { margin-bottom: .7rem; } }
 
 /* ─── Pricing ───────────────────────────────────────── */
-.prices { border-top: 1px solid var(--line); }
-.price-row {
-  display: grid; grid-template-columns: 1fr auto; gap: 1rem 2rem; align-items: baseline;
-  padding: 1.6rem 0; border-bottom: 1px solid var(--line);
+.quote { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+.quote-copy h2::after { content: ''; display: block; width: 56px; height: 4px; margin-top: 1rem; border-radius: 2px; background: var(--copper-grad); box-shadow: 0 0 12px rgba(255,160,64,.5); }
+.quote-copy > p { margin-top: 1.25rem; color: var(--muted); font-size: 1.125rem; max-width: 32em; }
+.quote-copy .floor { color: var(--silk); }
+.quote-copy .floor strong { color: var(--copper-hi); font-family: var(--display); font-size: 1.375rem; font-stretch: 110%; }
+.quote-copy .btn { margin-top: 2rem; }
+.quote-factors {
+  border: 1px solid rgba(25,195,138,.3); border-radius: 10px; padding: 1.75rem;
+  background: linear-gradient(160deg, rgba(25,195,138,.14), rgba(25,195,138,.03)), var(--board-2);
 }
-.price-row h3 { font-size: 1.375rem; font-stretch: 106%; }
-.price-row p:not(.amount) { margin-top: .4rem; color: var(--muted); }
-.amount { font: 700 1.25rem var(--display); font-stretch: 110%; white-space: nowrap; }
-.price-row-main { position: relative; }
-.price-row-main::before { content: ''; position: absolute; left: calc(-1 * var(--gutter)); top: 1.6rem; bottom: 1.6rem; width: 3px; background: var(--copper-grad); box-shadow: 0 0 10px rgba(255,160,64,.6); }
-.price-row-main .amount { color: var(--copper); }
-@media (max-width: 600px) { .price-row { grid-template-columns: 1fr; } .price-row-main::before { left: -1rem; } }
+.quote-factors h3 { font-size: 1.25rem; font-stretch: 106%; }
+.quote-factors ul { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .85rem; }
+.quote-factors li { position: relative; padding-left: 1.4rem; color: var(--muted); }
+.quote-factors li::before { content: ''; position: absolute; left: 0; top: .6em; width: 8px; height: 8px; border-radius: 50%; background: #ffd28a; box-shadow: 0 0 6px var(--copper); }
+.quote-factors strong { color: var(--silk); font-weight: 600; }
+.quote-note { margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9375rem; }
+@media (max-width: 860px) { .quote { grid-template-columns: 1fr; } }
 
 /* ─── FAQ ───────────────────────────────────────────── */
 .faq-wrap { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem 4rem; }
