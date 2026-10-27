@@ -158,14 +158,16 @@ p { margin: 0; }
 .traces { filter: drop-shadow(0 0 5px rgba(60,194,180,.45)); }
 .traces path { fill: none; stroke: var(--copper); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
 .pads circle { fill: #cfe99a; stroke: var(--copper); stroke-width: 3; filter: drop-shadow(0 0 4px rgba(60,194,180,.7)); }
-.pulses path { fill: none; stroke: #f2ffe0; stroke-width: 3.5; stroke-linecap: round; opacity: 0;
-  filter: drop-shadow(0 0 6px #cfe99a) drop-shadow(0 0 2px #fff);
-  stroke-dasharray: 18 var(--len); stroke-dashoffset: calc(var(--len) + 18); }
-.js.powered .pulses path { animation: current var(--dur) linear infinite; animation-delay: calc(2.3s + var(--i) * 410ms); }
-@keyframes current { 0% { opacity: 1; stroke-dashoffset: calc(var(--len) + 18); } 100% { opacity: 1; stroke-dashoffset: 0; } }
+.pulses path { fill: none; stroke-linecap: round; }
+.pulse-tail { stroke: #cfe99a; stroke-width: 5.5; opacity: .9; filter: drop-shadow(0 0 6px #3cc2b4); }
+.pulse-head { stroke: #fbfff2; stroke-width: 5; filter: drop-shadow(0 0 5px #cfe99a) drop-shadow(0 0 2px #fff); }
+.pads circle, .chip-led { transform-box: fill-box; transform-origin: center; }
+.js.powered .chip-led { animation: ledOn .3s forwards 1.9s, ledBlink 1.6s steps(2, jump-none) 2.4s infinite; }
+@keyframes ledBlink { 50% { opacity: .35; } }
 .silk text { fill: var(--silk); font: 500 15px var(--body); opacity: .85; }
 .chip-body { fill: #04121a; stroke: var(--silk); stroke-width: 2; }
-.js.powered .chip-body { animation: chipOn .8s forwards 1.9s; }
+.js.powered .chip-body { animation: chipOn .8s forwards 1.9s, breathe 3.2s ease-in-out 2.7s infinite; }
+@keyframes breathe { 0%,100% { filter: drop-shadow(0 0 10px rgba(60,194,180,.45)); } 50% { filter: drop-shadow(0 0 22px rgba(207,233,154,.7)); } }
 @keyframes chipOn { to { stroke: var(--copper-hi); filter: drop-shadow(0 0 14px rgba(60,194,180,.55)); } }
 .chip-dot { fill: var(--silk); opacity: .5; }
 .chip-label { fill: var(--silk); font: 800 30px var(--display); font-stretch: 120%; letter-spacing: .02em; }
@@ -178,7 +180,6 @@ p { margin: 0; }
 .js.powered .traces path { animation: draw 1.1s var(--ease) forwards; animation-delay: calc(var(--i) * 90ms + 150ms); }
 .js.powered .pads circle { animation: fade .4s forwards; animation-delay: calc(var(--i) * 90ms); }
 .js.powered .silk text { animation: fadeSilk .5s forwards; animation-delay: calc(var(--i) * 90ms + 500ms); }
-.js.powered .chip-led { animation: ledOn .3s forwards 1.9s; }
 .js.powered .traces { animation: glow 1.2s ease-out 1.9s; }
 
 @keyframes draw { to { stroke-dashoffset: 0; } }
