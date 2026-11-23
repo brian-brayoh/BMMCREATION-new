@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BMM Creations | Brian, full-stack web developer in Nairobi</title>
-  <meta name="description" content="Brian is a full-stack web developer in Nairobi building websites, dashboards and SaaS products for Kenyan institutions and businesses, with M-Pesa integration and admin systems your team can run." />
-  <meta name="theme-color" content="#134056" />
+  <title>BMM Creations | Websites, apps &amp; design in Nairobi</title>
+  <meta name="description" content="BMM Creations is Brian's Nairobi studio: websites, admin dashboards and SaaS products for Kenyan institutions and businesses, with M-Pesa payments, plus posters and brand design." />
+  <meta name="theme-color" content="#07070a" />
 
-  <meta property="og:title" content="BMM Creations | Full-stack web developer in Nairobi" />
+  <meta property="og:title" content="BMM Creations | Websites, apps &amp; design in Nairobi" />
   <meta property="og:description" content="Websites, dashboards and SaaS products for Kenyan institutions and businesses." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/images/brand/logo-full.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=6" />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800;900&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css?v=7" />
   <link rel="icon" type="image/png" href="assets/images/brand/favicon.png" />
   <link rel="apple-touch-icon" href="assets/images/brand/apple-touch-icon.png" />
 </head>
@@ -23,12 +23,23 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
+<!-- ─── Loader ─────────────────────────────────── -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="display grad loader-word">BMM<span id="pct">0</span></div>
+    <div class="loader-bar"><i id="lbar"></i></div>
+  </div>
+</div>
+
+<div class="cursor-glow" id="glow" aria-hidden="true"></div>
+<div class="cursor-dot" id="dot" aria-hidden="true"></div>
+
 <!-- ─── Navigation ─────────────────────────────── -->
 <header class="site-header" id="siteHeader">
   <div class="wrap header-inner">
     <a href="#top" class="logo" aria-label="BMM Creations, back to top">
-      <img class="logo-mark" src="assets/images/brand/logo-mark.png" alt="" width="31" height="36" />
-      <span><b>BMM</b> <i>Creations</i></span>
+      <img class="logo-mark" src="assets/images/brand/logo-mark.png" alt="" width="34" height="40" />
+      <span><b>BMM</b> Creations</span>
     </a>
 
     <nav class="main-nav" id="mainNav" aria-label="Main">
@@ -37,7 +48,7 @@
       <a href="#design">Design</a>
       <a href="#about">About</a>
       <a href="#pricing">Pricing</a>
-      <a href="#contact" class="btn btn-small">Start a project</a>
+      <a href="#contact" class="btn btn-primary btn-small nav-cta">Start a project <span class="arr">→</span></a>
     </nav>
 
     <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mainNav">
@@ -51,18 +62,27 @@
 
 <!-- ─── Hero ─────────────────────────────────────── -->
 <section class="hero" id="top">
+  <div class="hero-grid-bg" aria-hidden="true"></div>
+  <div class="orb" aria-hidden="true"></div>
+  <div class="orb2" aria-hidden="true"></div>
+
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="status"><span class="led" aria-hidden="true"></span>Available for new projects</p>
-      <h1>I build the web systems Kenyan schools and businesses run on.</h1>
+      <p class="tag mono"><span class="live" aria-hidden="true"></span>Nairobi, Kenya · Taking new projects</p>
+      <h1 class="display">
+        <span class="line"><span>Web systems</span></span>
+        <span class="line"><span>wired with</span></span>
+        <span class="line"><span class="grad">high voltage.</span></span>
+      </h1>
       <p class="hero-lede">
-        I'm Brian, a software engineer in Nairobi. I design and ship websites,
-        admin dashboards and SaaS products, with M&#8209;Pesa payments, proper databases
-        and code that keeps running long after launch day.
+        I'm Brian, a software engineer in Nairobi. BMM Creations designs and ships
+        <span class="rotator" id="rot">websites</span><br>
+        for Kenyan schools and businesses, with M&#8209;Pesa payments, proper databases
+        and <b>code that keeps running long after launch day.</b>
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn">Start a project</a>
-        <a href="#work" class="btn btn-ghost">See the work</a>
+        <a href="#contact" class="btn btn-primary">Start a project <span class="arr">→</span></a>
+        <a href="#work" class="btn">See the work</a>
       </div>
     </div>
 
@@ -96,7 +116,7 @@
           <text x="302" y="496">Vercel</text>
         </g>
         <g class="chip">
-          <rect class="chip-body" x="240" y="190" width="120" height="140" rx="6" />
+          <rect class="chip-body" x="240" y="190" width="120" height="140" rx="10" />
           <circle class="chip-dot" cx="256" cy="206" r="4" />
           <text class="chip-label" x="300" y="258" text-anchor="middle">BMM</text>
           <text class="chip-sub" x="300" y="282" text-anchor="middle">U1</text>
@@ -105,117 +125,162 @@
       </svg>
     </figure>
   </div>
+  <div class="scroll-hint mono" aria-hidden="true">Scroll<i></i></div>
 </section>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="mq1"></div></div>
+<div class="marquee alt" aria-hidden="true"><div class="track" id="mq2"></div></div>
 
 <!-- ─── Selected work ──────────────────────────── -->
 <section class="section" id="work">
   <div class="wrap">
-    <header class="section-head">
-      <h2>Selected work</h2>
-      <p>Live systems I designed, built and deployed. Click through, they're real.</p>
+    <header class="section-head rv">
+      <div>
+        <span class="mono eyebrow">✦ Selected work</span>
+        <h2 class="display">Live systems, <span class="grad">real users.</span></h2>
+        <p>Designed, built and deployed by me. Click through, they're live.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filter projects">
+        <button type="button" class="on" data-f="all">All</button>
+        <button type="button" data-f="web">Websites</button>
+        <button type="button" data-f="saas">SaaS &amp; apps</button>
+      </div>
     </header>
 
-    <article class="project">
-      <a class="project-shot" href="https://murangatech.ac.ke" target="_blank" rel="noopener">
-        <!-- Drop a screenshot at assets/images/websites/mtti.jpg and it will show here automatically -->
-        <img src="assets/images/websites/mtti.jpg" alt="Murang'a Technical Training Institute website" loading="lazy"
-             onerror="this.parentElement.classList.add('no-shot');this.remove();" />
-        <span class="shot-fallback" aria-hidden="true">murangatech.ac.ke</span>
-      </a>
-      <div class="project-body">
-        <p class="project-kind">Institution website and CMS</p>
-        <h3>Murang'a Technical Training Institute</h3>
-        <p>The college's public website, rebuilt from WordPress into a fast Next.js app. Staff sign in to an admin dashboard to publish courses, news and events without touching code.</p>
-        <ul class="stack">
-          <li>Next.js</li><li>TypeScript</li><li>Prisma</li><li>PostgreSQL</li><li>Auth.js</li><li>Vercel</li>
-        </ul>
-        <a class="project-link" href="https://murangatech.ac.ke" target="_blank" rel="noopener">Visit murangatech.ac.ke</a>
-      </div>
-    </article>
+    <div class="works">
+      <article class="work featured rv" data-c="web">
+        <a class="shot" href="https://murangatech.ac.ke" target="_blank" rel="noopener" style="--g:linear-gradient(135deg,#3b1d8f,#8b5cff)">
+          <span class="browser">
+            <span class="bar"><i></i><i></i><i></i><em>murangatech.ac.ke</em></span>
+            <img src="assets/images/websites/mtti.jpg" alt="Murang'a Technical Training Institute website" loading="lazy" />
+          </span>
+        </a>
+        <div class="work-body">
+          <p class="mono kind">Institution website + CMS</p>
+          <h3>Murang'a Technical Training Institute</h3>
+          <p>The college's public website, rebuilt from WordPress into a fast Next.js app. Staff sign in to an admin dashboard to publish courses, news and events without touching code.</p>
+          <ul class="stack"><li>Next.js</li><li>TypeScript</li><li>Prisma</li><li>PostgreSQL</li><li>Auth.js</li><li>Vercel</li></ul>
+          <a class="work-link" href="https://murangatech.ac.ke" target="_blank" rel="noopener">Visit murangatech.ac.ke <span class="go">→</span></a>
+        </div>
+      </article>
 
-    <article class="project project-flip">
-      <a class="project-shot" href="https://risiti-psi.vercel.app/" target="_blank" rel="noopener">
-        <img src="assets/images/websites/risiti.jpg" alt="Risiti home page showing an M-Pesa payment turned into a tax invoice" loading="lazy" />
-      </a>
-      <div class="project-body">
-        <p class="project-kind">SaaS for small businesses</p>
-        <h3>Risiti</h3>
-        <p>Risiti watches a business's M&#8209;Pesa paybill or till. Each payment is matched to the customer, turned into a numbered invoice with VAT worked out, and sent to them by SMS, with no typing and no end-of-month catch-up.</p>
-        <ul class="stack">
-          <li>M-Pesa integration</li><li>Automatic invoicing</li><li>VAT</li><li>SMS delivery</li>
-        </ul>
-        <a class="project-link" href="https://risiti-psi.vercel.app/" target="_blank" rel="noopener">Open Risiti</a>
-      </div>
-    </article>
+      <article class="work rv" data-c="saas">
+        <a class="shot" href="https://risiti-psi.vercel.app/" target="_blank" rel="noopener" style="--g:linear-gradient(135deg,#d4ff3a,#3ad18a)">
+          <span class="browser">
+            <span class="bar"><i></i><i></i><i></i><em>risiti</em></span>
+            <img src="assets/images/websites/risiti.jpg" alt="Risiti home page showing an M-Pesa payment turned into a tax invoice" loading="lazy" />
+          </span>
+        </a>
+        <div class="work-body">
+          <p class="mono kind">SaaS for small businesses</p>
+          <h3>Risiti</h3>
+          <p>Watches a business's M&#8209;Pesa paybill or till. Each payment is matched to the customer, turned into a numbered invoice with VAT worked out, and sent by SMS. No typing, no month-end catch-up.</p>
+          <ul class="stack"><li>M-Pesa</li><li>Auto invoicing</li><li>VAT</li><li>SMS</li></ul>
+          <a class="work-link" href="https://risiti-psi.vercel.app/" target="_blank" rel="noopener">Open Risiti <span class="go">→</span></a>
+        </div>
+      </article>
 
-    <article class="project">
-      <a class="project-shot" href="https://eccomerce-as-a-service.vercel.app/" target="_blank" rel="noopener">
-        <img src="assets/images/websites/ecommerce.jpg" alt="BMM Creations online store home page" loading="lazy" />
-      </a>
-      <div class="project-body">
-        <p class="project-kind">Multi-tenant SaaS</p>
-        <h3>E-commerce platform</h3>
-        <p>A store builder where each business gets its own shop. Customers pay with M-Pesa, owners track inventory and see sales reports, and orders can continue on WhatsApp.</p>
-        <ul class="stack">
-          <li>M-Pesa checkout</li><li>Inventory</li><li>Sales reports</li><li>WhatsApp ordering</li>
-        </ul>
-        <a class="project-link" href="https://eccomerce-as-a-service.vercel.app/" target="_blank" rel="noopener">Open the live store</a>
-      </div>
-    </article>
+      <article class="work rv" data-c="saas">
+        <a class="shot" href="https://eccomerce-as-a-service.vercel.app/" target="_blank" rel="noopener" style="--g:linear-gradient(135deg,#ff5a36,#ffb03a)">
+          <span class="browser">
+            <span class="bar"><i></i><i></i><i></i><em>store</em></span>
+            <img src="assets/images/websites/ecommerce.jpg" alt="BMM Creations online store home page" loading="lazy" />
+          </span>
+        </a>
+        <div class="work-body">
+          <p class="mono kind">Multi-tenant SaaS</p>
+          <h3>E-commerce platform</h3>
+          <p>A store builder where each business gets its own shop. Customers pay with M-Pesa, owners track inventory and sales, and orders can continue on WhatsApp.</p>
+          <ul class="stack"><li>M-Pesa checkout</li><li>Inventory</li><li>Reports</li><li>WhatsApp</li></ul>
+          <a class="work-link" href="https://eccomerce-as-a-service.vercel.app/" target="_blank" rel="noopener">Open the live store <span class="go">→</span></a>
+        </div>
+      </article>
 
-    <article class="project project-flip">
-      <a class="project-shot" href="https://gatepass-management-system-one.vercel.app/" target="_blank" rel="noopener">
-        <img src="assets/images/websites/securegate.jpg" alt="SecureGate sign-in screen" loading="lazy" />
-      </a>
-      <div class="project-body">
-        <p class="project-kind">Access control system</p>
-        <h3>SecureGate</h3>
-        <p>Gate pass and visitor management for institutions. Guards, the head of security and admins each get their own view, and the paper logbook at the gate goes away.</p>
-        <ul class="stack">
-          <li>Role-based access</li><li>Visitor logs</li><li>Works on phones</li>
-        </ul>
-        <a class="project-link" href="https://gatepass-management-system-one.vercel.app/" target="_blank" rel="noopener">Try the demo</a>
-      </div>
-    </article>
+      <article class="work rv" data-c="saas">
+        <a class="shot" href="https://gatepass-management-system-one.vercel.app/" target="_blank" rel="noopener" style="--g:linear-gradient(135deg,#38d6ff,#3b5bff)">
+          <span class="browser">
+            <span class="bar"><i></i><i></i><i></i><em>securegate</em></span>
+            <img src="assets/images/websites/securegate.jpg" alt="SecureGate sign-in screen" loading="lazy" />
+          </span>
+        </a>
+        <div class="work-body">
+          <p class="mono kind">Access control system</p>
+          <h3>SecureGate</h3>
+          <p>Gate pass and visitor management for institutions. Guards, the head of security and admins each get their own view, and the paper logbook at the gate goes away.</p>
+          <ul class="stack"><li>Role-based access</li><li>Visitor logs</li><li>Mobile-ready</li></ul>
+          <a class="work-link" href="https://gatepass-management-system-one.vercel.app/" target="_blank" rel="noopener">Try the demo <span class="go">→</span></a>
+        </div>
+      </article>
 
-    <article class="project">
-      <a class="project-shot" href="https://finacial-tracker-six.vercel.app/" target="_blank" rel="noopener">
-        <img src="assets/images/websites/fintrack.jpg" alt="FinTrack dashboard with income, expenses and savings rate" loading="lazy" />
-      </a>
-      <div class="project-body">
-        <p class="project-kind">Web app</p>
-        <h3>FinTrack</h3>
-        <p>A personal finance tracker built for Kenya. Record income and expenses in shillings, see where the money went each month, and watch your savings rate. Free to use.</p>
-        <ul class="stack">
-          <li>Dashboards</li><li>Charts</li><li>KES budgeting</li>
-        </ul>
-        <a class="project-link" href="https://finacial-tracker-six.vercel.app/" target="_blank" rel="noopener">Open FinTrack</a>
-      </div>
-    </article>
+      <article class="work rv" data-c="saas">
+        <a class="shot" href="https://finacial-tracker-six.vercel.app/" target="_blank" rel="noopener" style="--g:linear-gradient(135deg,#1b1b2b,#8b5cff 130%)">
+          <span class="browser">
+            <span class="bar"><i></i><i></i><i></i><em>fintrack</em></span>
+            <img src="assets/images/websites/fintrack.jpg" alt="FinTrack dashboard with income, expenses and savings rate" loading="lazy" />
+          </span>
+        </a>
+        <div class="work-body">
+          <p class="mono kind">Web app</p>
+          <h3>FinTrack</h3>
+          <p>A personal finance tracker built for Kenya. Record income and expenses in shillings, see where the money went, and watch your savings rate. Free to use.</p>
+          <ul class="stack"><li>Dashboards</li><li>Charts</li><li>KES budgeting</li></ul>
+          <a class="work-link" href="https://finacial-tracker-six.vercel.app/" target="_blank" rel="noopener">Open FinTrack <span class="go">→</span></a>
+        </div>
+      </article>
+    </div>
   </div>
 </section>
 
+<!-- ─── Stats ──────────────────────────────────── -->
+<div class="wrap">
+  <div class="stats rv">
+    <div class="stat"><b><span class="count" data-to="5">0</span></b><span>Live systems shipped</span></div>
+    <div class="stat"><b><span class="count" data-to="11">0</span>+</b><span>Posters &amp; campaigns designed</span></div>
+    <div class="stat"><b><span class="count" data-to="24">0</span>h</b><span>Reply time on every enquiry</span></div>
+    <div class="stat"><b>1</b><span>Person from first call to launch</span></div>
+  </div>
+</div>
+
 <!-- ─── Services ───────────────────────────────── -->
-<section class="section section-alt" id="services">
+<section class="section" id="services">
   <div class="wrap">
-    <header class="section-head">
-      <h2>What I build</h2>
+    <header class="section-head rv">
+      <div>
+        <span class="mono eyebrow">✦ What I build</span>
+        <h2 class="display">Four ways to make you <span class="grad">unmissable.</span></h2>
+      </div>
       <p>One person from first call to launch day, so you talk to the developer writing your code.</p>
     </header>
 
     <div class="services">
-      <div class="service">
-        <h3>Web apps and SaaS</h3>
+      <article class="svc rv">
+        <span class="mono num">01</span>
+        <div class="ico" style="--c:212,255,58"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M7 8l-2 2 2 2M17 8l2 2-2 2"/></svg></div>
+        <h3>Web apps &amp; SaaS</h3>
         <p>Dashboards, booking and records systems, multi-tenant platforms. Logins with roles, M-Pesa payments, reports you can export.</p>
-      </div>
-      <div class="service">
-        <h3>Websites for schools and businesses</h3>
+        <ul><li>Dashboards</li><li>Portals</li><li>SaaS</li></ul>
+      </article>
+      <article class="svc rv">
+        <span class="mono num">02</span>
+        <div class="ico" style="--c:56,214,255"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></div>
+        <h3>Websites for schools &amp; businesses</h3>
         <p>Fast, mobile-first sites with an admin area your own staff can update. Hosting, domain and email set up for you.</p>
-      </div>
-      <div class="service">
-        <h3>Brand and print design</h3>
-        <p>Intake flyers, event posters, social media graphics and logos, designed to match the website so everything looks like one brand.</p>
-      </div>
+        <ul><li>Colleges</li><li>SACCOs</li><li>Shops</li></ul>
+      </article>
+      <article class="svc rv">
+        <span class="mono num">03</span>
+        <div class="ico" style="--c:255,90,54"><svg viewBox="0 0 24 24"><circle cx="13.5" cy="6.5" r="2.5"/><path d="M3 21l6-6 4 4 3-3 5 5M3 3h18v18H3z"/></svg></div>
+        <h3>Brand &amp; print design</h3>
+        <p>Intake flyers, event posters, social graphics and logos, designed to match the website so everything looks like one brand.</p>
+        <ul><li>Posters</li><li>Social</li><li>Logos</li></ul>
+      </article>
+      <article class="svc rv">
+        <span class="mono num">04</span>
+        <div class="ico" style="--c:139,92,255"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg></div>
+        <h3>Hosting &amp; care</h3>
+        <p>Domain, hosting and email handled. Monthly support for updates, backups and fixes, so the site never goes stale.</p>
+        <ul><li>Domains</li><li>Backups</li><li>Updates</li></ul>
+      </article>
     </div>
   </div>
 </section>
@@ -223,8 +288,11 @@
 <!-- ─── Design work ────────────────────────────── -->
 <section class="section" id="design">
   <div class="wrap">
-    <header class="section-head">
-      <h2>Design work</h2>
+    <header class="section-head rv">
+      <div>
+        <span class="mono eyebrow">✦ Design work</span>
+        <h2 class="display">Posters that <span class="grad">stop the scroll.</span></h2>
+      </div>
       <p>Posters and social graphics, mostly for technical colleges. Tap any one to see it full size.</p>
     </header>
     <div class="gallery" id="gallery"><!-- filled by main.js --></div>
@@ -248,30 +316,19 @@
 </dialog>
 
 <!-- ─── Process ────────────────────────────────── -->
-<section class="section section-alt" id="process">
-  <div class="wrap">
-    <header class="section-head">
-      <h2>How a project runs</h2>
+<section class="section" id="process">
+  <div class="wrap process">
+    <div class="process-intro rv">
+      <span class="mono eyebrow">✦ How a project runs</span>
+      <h2 class="display">From idea to <span class="grad">launch</span> in four moves.</h2>
       <p>Most websites go live within one to three weeks. Web apps are planned in stages.</p>
-    </header>
-
-    <ol class="process">
-      <li>
-        <h3>Discover</h3>
-        <p>A call about your goals, who will use the site and what it must do. You get a written quote with a fixed scope.</p>
-      </li>
-      <li>
-        <h3>Design</h3>
-        <p>Layouts and the look, shown on your phone and laptop before any code is written.</p>
-      </li>
-      <li>
-        <h3>Build</h3>
-        <p>I build on a private preview link you can open any time, and we adjust as we go.</p>
-      </li>
-      <li>
-        <h3>Launch</h3>
-        <p>Domain connected, staff shown how to use the admin, and support after it goes live.</p>
-      </li>
+      <a href="#contact" class="btn btn-primary">Book a free call <span class="arr">→</span></a>
+    </div>
+    <ol class="steps">
+      <li class="step rv"><span class="n">01</span><div><h3>Discover</h3><p>A call about your goals, who will use the site and what it must do. You get a written quote with a fixed scope.</p></div></li>
+      <li class="step rv"><span class="n">02</span><div><h3>Design</h3><p>Layouts and the look, shown on your phone and laptop before any code is written.</p></div></li>
+      <li class="step rv"><span class="n">03</span><div><h3>Build</h3><p>I build on a private preview link you can open any time, and we adjust as we go.</p></div></li>
+      <li class="step rv"><span class="n">04</span><div><h3>Launch</h3><p>Domain connected, staff shown how to use the admin, and support after it goes live.</p></div></li>
     </ol>
   </div>
 </section>
@@ -279,17 +336,18 @@
 <!-- ─── About ──────────────────────────────────── -->
 <section class="section" id="about">
   <div class="wrap about">
-    <div class="about-copy">
-      <h2>Engineer first</h2>
+    <div class="about-copy rv">
+      <span class="mono eyebrow">✦ About</span>
+      <h2 class="display">Engineer <span class="grad">first.</span></h2>
       <p>I studied software engineering, so I build websites the way engineers build systems: plan the data properly, test the edge cases, and deploy things that keep running when real people start using them.</p>
       <p>BMM Creations is my studio. I work with colleges, SACCOs, shops and growing businesses across Kenya, and I also do the design side, so your posters and your website come from the same hands.</p>
       <p>Today I'm building products for the Kenyan market, including helpdesk and payments tools for institutions and small businesses.</p>
     </div>
 
-    <div class="toolkit">
-      <h3>Toolkit</h3>
+    <div class="toolkit rv">
+      <div class="term-bar"><i></i><i></i><i></i><span class="mono">toolkit.json</span></div>
       <dl>
-        <dt>Frontend</dt><dd>Next.js, React, TypeScript, Tailwind CSS, HTML and CSS</dd>
+        <dt>Frontend</dt><dd>Next.js, React, TypeScript, Tailwind CSS, HTML &amp; CSS</dd>
         <dt>Backend</dt><dd>Node.js, Prisma, PostgreSQL, Auth.js, REST APIs</dd>
         <dt>Payments</dt><dd>M-Pesa paybill and till integrations</dd>
         <dt>Hosting</dt><dd>Vercel, Neon, cPanel hosting, DNS and email</dd>
@@ -297,28 +355,35 @@
       </dl>
     </div>
   </div>
+
+  <div class="wrap">
+    <div class="chips rv">
+      <span class="chip">Technical colleges</span><span class="chip">Schools</span><span class="chip">SACCOs</span><span class="chip">Shops &amp; retail</span><span class="chip">Institutions</span><span class="chip">Growing businesses</span><span class="chip">Startups</span>
+    </div>
+  </div>
 </section>
 
 <!-- ─── Pricing ────────────────────────────────── -->
-<section class="section section-alt" id="pricing">
-  <div class="wrap quote">
-    <div class="quote-copy">
-      <h2>Pricing</h2>
+<section class="section" id="pricing">
+  <div class="wrap pricing">
+    <div class="price-card rv">
+      <span class="mono badge">Fixed quote</span>
+      <h2 class="display">Pricing</h2>
       <p>Every project is quoted on its own, because a college portal and a shop landing page are very different jobs. After a short call you get a written quote with a fixed price and a clear scope.</p>
-      <p class="floor">Projects start from <strong>KES 15,000</strong>.</p>
-      <a href="#contact" class="btn">Request a quote</a>
+      <div class="price">KES 15,000<small>projects start from</small></div>
+      <a href="#contact" class="btn btn-dark">Request a quote <span class="arr">→</span></a>
     </div>
 
-    <div class="quote-factors">
-      <h3>What sets the price</h3>
+    <div class="factors rv">
+      <h3 class="display">What sets the price</h3>
       <ul>
-        <li><strong>Number of pages and features</strong>, from a single landing page to a full portal.</li>
-        <li><strong>An admin area</strong> so your staff can update news, courses or products.</li>
-        <li><strong>Logins, payments and reports</strong>, such as M-Pesa checkout or role-based access.</li>
-        <li><strong>Design work</strong>, including logos, posters and brand guides.</li>
-        <li><strong>Timeline</strong>, if you need it live sooner than usual.</li>
+        <li><b>Pages &amp; features</b><span>From a single landing page to a full portal.</span></li>
+        <li><b>An admin area</b><span>So your staff can update news, courses or products.</span></li>
+        <li><b>Logins, payments &amp; reports</b><span>M-Pesa checkout, role-based access and more.</span></li>
+        <li><b>Design work</b><span>Logos, posters and brand guides.</span></li>
+        <li><b>Timeline</b><span>If you need it live sooner than usual.</span></li>
       </ul>
-      <p class="quote-note">Domain and hosting are billed separately at cost. Monthly support for updates, backups and fixes is available after launch.</p>
+      <p class="note">Domain and hosting are billed separately at cost. Monthly support for updates, backups and fixes is available after launch.</p>
     </div>
   </div>
 </section>
@@ -326,8 +391,11 @@
 <!-- ─── FAQ ────────────────────────────────────── -->
 <section class="section" id="faq">
   <div class="wrap faq-wrap">
-    <h2>Questions</h2>
-    <div class="faq">
+    <div class="rv">
+      <span class="mono eyebrow">✦ FAQ</span>
+      <h2 class="display">Questions, <span class="grad">answered.</span></h2>
+    </div>
+    <div class="faq rv">
       <details>
         <summary>How much does a website cost?</summary>
         <p>It depends on what the site needs to do. Simple landing pages start from KES 15,000. Send a few details through the form or WhatsApp and you'll get a written quote, usually within a day.</p>
@@ -357,52 +425,43 @@
 </section>
 
 <!-- ─── Contact ────────────────────────────────── -->
-<section class="section contact-section" id="contact">
-  <div class="wrap contact">
-    <div class="contact-copy">
-      <h2>Tell me what you're building.</h2>
-      <p>Send a few lines about your project and I'll reply within 24 hours. Prefer to talk? WhatsApp is fastest.</p>
-      <ul class="contact-lines">
-        <li><span>WhatsApp</span><a href="https://wa.me/254746404011?text=Hi%20Brian%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">+254 746 404 011</a></li>
-        <li><span>Email</span><a href="mailto:mmuthomibrian@gmail.com">mmuthomibrian@gmail.com</a></li>
-        <li><span>Based in</span>Nairobi, working with clients across Kenya</li>
-      </ul>
-    </div>
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="contact rv">
+      <div class="contact-grid">
+        <div class="contact-copy">
+          <span class="mono eyebrow">✦ Start a project</span>
+          <h2 class="display">Let's make<br>some <span class="grad">noise.</span></h2>
+          <p>Send a few lines about your project and I'll reply within 24 hours. Prefer to talk? WhatsApp is fastest.</p>
+          <ul class="contact-lines">
+            <li><i>✆</i><span><small class="mono">WhatsApp</small><a href="https://wa.me/254746404011?text=Hi%20Brian%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener">+254 746 404 011</a></span></li>
+            <li><i>✉</i><span><small class="mono">Email</small><a href="mailto:mmuthomibrian@gmail.com">mmuthomibrian@gmail.com</a></span></li>
+            <li><i>⌖</i><span><small class="mono">Based in</small>Nairobi, working with clients across Kenya</span></li>
+          </ul>
+        </div>
 
-    <form class="contact-form" id="contactForm" action="https://formspree.io/f/mykakrna" method="POST">
-      <div class="field-row">
-        <label class="field">
-          <span>Name</span>
-          <input type="text" name="name" autocomplete="name" required />
-        </label>
-        <label class="field">
-          <span>Email</span>
-          <input type="email" name="email" autocomplete="email" required />
-        </label>
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/mykakrna" method="POST">
+          <div class="field-row">
+            <div class="field"><input id="fName" type="text" name="name" autocomplete="name" placeholder=" " required /><label for="fName">Name</label></div>
+            <div class="field"><input id="fEmail" type="email" name="email" autocomplete="email" placeholder=" " required /><label for="fEmail">Email</label></div>
+          </div>
+          <div class="field"><input id="fPhone" type="tel" name="phone" autocomplete="tel" placeholder=" " /><label for="fPhone">Phone or WhatsApp (optional)</label></div>
+          <div>
+            <p class="mono opts-label">What do you need?</p>
+            <div class="opts">
+              <input type="radio" name="service" id="s1" value="A website" checked><label for="s1">A website</label>
+              <input type="radio" name="service" id="s2" value="A web app or SaaS"><label for="s2">Web app / SaaS</label>
+              <input type="radio" name="service" id="s3" value="Design work"><label for="s3">Design work</label>
+              <input type="radio" name="service" id="s4" value="Help with an existing site"><label for="s4">Fix my site</label>
+              <input type="radio" name="service" id="s5" value="Something else"><label for="s5">Something else</label>
+            </div>
+          </div>
+          <div class="field"><textarea id="fMsg" name="message" rows="5" placeholder=" " required></textarea><label for="fMsg">Who it's for, what it should do, any deadline</label></div>
+          <button type="submit" class="btn btn-primary btn-block">Send message <span class="arr">→</span></button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
       </div>
-      <div class="field-row">
-        <label class="field">
-          <span>Phone or WhatsApp <em>(optional)</em></span>
-          <input type="tel" name="phone" autocomplete="tel" />
-        </label>
-        <label class="field">
-          <span>What do you need?</span>
-          <select name="service">
-            <option>A website</option>
-            <option>A web app or SaaS</option>
-            <option>Design work</option>
-            <option>Help with an existing site</option>
-            <option>Something else</option>
-          </select>
-        </label>
-      </div>
-      <label class="field">
-        <span>About the project</span>
-        <textarea name="message" rows="5" required placeholder="Who it's for, what it should do, and any deadline."></textarea>
-      </label>
-      <button type="submit" class="btn">Send message</button>
-      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-    </form>
+    </div>
   </div>
 </section>
 
@@ -410,21 +469,25 @@
 
 <!-- ─── Footer ─────────────────────────────────── -->
 <footer class="site-footer">
-  <div class="wrap footer-inner">
-    <p class="footer-brand"><img src="assets/images/brand/logo-mark.png" alt="" width="24" height="28" />© <span id="year">2026</span> BMM Creations. Designed and built by Brian in Nairobi.</p>
-    <nav aria-label="Footer">
-      <a href="#work">Work</a>
-      <a href="#design">Design</a>
-      <a href="https://github.com/brian-brayoh" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:mmuthomibrian@gmail.com">Email</a>
-    </nav>
+  <div class="wrap">
+    <div class="big-word" aria-hidden="true">BMM✦</div>
+    <div class="footer-inner">
+      <p class="footer-brand"><img src="assets/images/brand/logo-mark.png" alt="" width="24" height="28" />© <span id="year">2026</span> BMM Creations. Designed and built by Brian in Nairobi.</p>
+      <nav aria-label="Footer">
+        <a href="#work">Work</a>
+        <a href="#design">Design</a>
+        <a href="https://github.com/brian-brayoh" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:mmuthomibrian@gmail.com">Email</a>
+      </nav>
+    </div>
   </div>
 </footer>
 
 <a class="wa-float" href="https://wa.me/254746404011?text=Hi%20Brian%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1-.7-.3-1.4-.7-2-1.3a7.6 7.6 0 0 1-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.5.3-.4v-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.6 2.5 4 3.5 1.5.6 2 .7 2.8.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>
 </a>
+<button class="totop" id="totop" aria-label="Back to top">↑</button>
 
-<script src="assets/js/main.js?v=6"></script>
+<script src="assets/js/main.js?v=7"></script>
 </body>
 </html>

@@ -1,12 +1,51 @@
-/* ─── BMM Creation, main.js ─────────────────────────── */
+/* ─── BMM Creations, main.js ─────────────────────────── */
 
 document.documentElement.classList.add('js');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ── Loader ── */
+(() => {
+  const loader = document.getElementById('loader');
+  const pct = document.getElementById('pct');
+  const bar = document.getElementById('lbar');
+  const finish = () => {
+    loader.classList.add('done');
+    document.body.classList.add('ready');
+    setTimeout(() => loader.remove(), 1000);
+  };
+  if (reduceMotion) return finish();
+  let p = 0;
+  const t = setInterval(() => {
+    p = Math.min(100, p + Math.ceil(Math.random() * 14));
+    pct.textContent = p;
+    bar.style.width = p + '%';
+    if (p >= 100) { clearInterval(t); setTimeout(finish, 250); }
+  }, 70);
+})();
+
+/* ── Cursor glow + dot ── */
+(() => {
+  if (reduceMotion || matchMedia('(hover: none)').matches) return;
+  const glow = document.getElementById('glow');
+  const dot = document.getElementById('dot');
+  let mx = innerWidth / 2, my = innerHeight / 2, gx = mx, gy = my;
+  addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+  }, { passive: true });
+  (function loop() {
+    gx += (mx - gx) * .08; gy += (my - gy) * .08;
+    glow.style.transform = `translate(${gx - 210}px,${gy - 210}px)`;
+    requestAnimationFrame(loop);
+  })();
+  document.addEventListener('mouseover', e =>
+    dot.classList.toggle('big', !!e.target.closest('a, button, .chip, summary, .opts label')));
+})();
 
 /* ── Hero schematic ───────────────────────────────────
-   1. On load the traces draw in from each pin and the chip powers on.
+   1. After the loader, traces draw in from each pin and the chip powers on.
    2. Then signals keep flowing: each wire fires a glowing pulse, sometimes
-      into the chip, sometimes out to its pin. Whatever it reaches flashes,
-      and the pin's label lights up.                                      */
+      into the chip, sometimes out to its pin.                            */
 (() => {
   const svg = document.querySelector('.schematic svg');
   if (!svg) return;
@@ -16,6 +55,7 @@ document.documentElement.classList.add('js');
   const labels = [...svg.querySelectorAll('.silk text')];
   const chip   = svg.querySelector('.chip-body');
   const led    = svg.querySelector('.chip-led');
+  const VOLT = '#d4ff3a';
 
   traces.forEach((p, i) => {
     p.style.setProperty('--len', Math.ceil(p.getTotalLength()));
@@ -26,9 +66,8 @@ document.documentElement.classList.add('js');
   requestAnimationFrame(() => requestAnimationFrame(() =>
     document.documentElement.classList.add('powered')));
 
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (reduceMotion) return;
 
-  // One tail + one bright head per trace
   const layer = document.createElementNS(NS, 'g');
   layer.setAttribute('class', 'pulses');
   svg.insertBefore(layer, svg.querySelector('.pads'));
@@ -40,7 +79,7 @@ document.documentElement.classList.add('js');
       el.setAttribute('d', p.getAttribute('d'));
       el.setAttribute('class', cls);
       el.style.strokeDasharray = `${dash} ${len + 200}`;
-      el.style.strokeDashoffset = dash;           // parked before the start
+      el.style.strokeDashoffset = dash;
       layer.appendChild(el);
       return el;
     };
@@ -48,10 +87,10 @@ document.documentElement.classList.add('js');
   });
 
   const flash = (el, glow) => el && el.animate(
-    [{ filter: 'none' }, { filter: `drop-shadow(0 0 ${glow}px #cfe99a) brightness(1.6)` }, { filter: 'none' }],
+    [{ filter: 'none' }, { filter: `drop-shadow(0 0 ${glow}px ${VOLT}) brightness(1.6)` }, { filter: 'none' }],
     { duration: 520, easing: 'ease-out' });
   const lightLabel = el => el && el.animate(
-    [{ fill: '#f3f7f1' }, { fill: '#cfe99a', offset: .25 }, { fill: '#f3f7f1' }],
+    [{ fill: '#f3f1ea' }, { fill: VOLT, offset: .25 }, { fill: '#f3f1ea' }],
     { duration: 900, easing: 'ease-out' });
   const pop = el => el && el.animate(
     [{ transform: 'scale(1)' }, { transform: 'scale(1.7)' }, { transform: 'scale(1)' }],
@@ -63,11 +102,10 @@ document.documentElement.classList.add('js');
   const fire = i => {
     if (!visible || document.hidden) return setTimeout(() => fire(i), 800);
     const { len, tail, head } = wires[i];
-    const inbound = Math.random() < 0.6;          // most traffic flows into the chip
+    const inbound = Math.random() < 0.6;
     const duration = 900 + len * 3.2;
-    // dashoffset positions: inbound runs pin → chip, outbound chip → pin
     const t = inbound ? [TAIL, -len] : [-len, TAIL];
-    const h = inbound ? [HEAD, -len - (TAIL - HEAD)] : [-len, TAIL];   // head rides the leading end
+    const h = inbound ? [HEAD, -len - (TAIL - HEAD)] : [-len, TAIL];
     const opts = { duration, easing: 'cubic-bezier(.45,.05,.55,.95)', fill: 'forwards' };
     if (inbound) { lightLabel(labels[i]); pop(pads[i]); }
     tail.animate([{ strokeDashoffset: t[0] }, { strokeDashoffset: t[1] }], opts);
@@ -79,15 +117,50 @@ document.documentElement.classList.add('js');
     };
   };
 
-  // start once the power-on sequence has finished, staggered per wire
-  setTimeout(() => traces.forEach((_, i) => setTimeout(() => fire(i), i * 330 + Math.random() * 600)), 2300);
+  setTimeout(() => traces.forEach((_, i) => setTimeout(() => fire(i), i * 330 + Math.random() * 600)), 3400);
 })();
 
-/* ── Header border once scrolled ── */
+/* ── Rotating word in the hero ── */
+(() => {
+  const rot = document.getElementById('rot');
+  if (!rot || reduceMotion) return;
+  const words = ['websites', 'admin dashboards', 'SaaS products', 'M-Pesa checkouts', 'school portals', 'posters & brands'];
+  let wi = 0;
+  setInterval(() => {
+    const next = words[++wi % words.length];
+    let s = rot.textContent;
+    const del = setInterval(() => {
+      s = s.slice(0, -1); rot.textContent = s;
+      if (!s) {
+        clearInterval(del);
+        let i = 0;
+        const typ = setInterval(() => { rot.textContent = next.slice(0, ++i); if (i === next.length) clearInterval(typ); }, 55);
+      }
+    }, 30);
+  }, 2800);
+})();
+
+/* ── Marquees ── */
+(() => {
+  const m1 = ['Websites', 'Web apps', 'SaaS', 'M-Pesa integration', 'Admin dashboards', 'Posters', 'Branding'];
+  const m2 = ['Engineer first', 'Clean code', 'Fast delivery', 'Made in Nairobi', 'Built to last', 'Zero templates'];
+  const fill = (id, arr) => {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = [...arr, ...arr, ...arr, ...arr].map(w => `<span>${w}</span>`).join('');
+  };
+  fill('mq1', m1); fill('mq2', m2);
+})();
+
+/* ── Header, back-to-top ── */
 const header = document.getElementById('siteHeader');
-const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
-window.addEventListener('scroll', onScroll, { passive: true });
+const totop = document.getElementById('totop');
+const onScroll = () => {
+  header.classList.toggle('is-scrolled', scrollY > 20);
+  totop.classList.toggle('show', scrollY > 900);
+};
+addEventListener('scroll', onScroll, { passive: true });
 onScroll();
+totop.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
 
 /* ── Mobile menu ── */
 const toggle = document.getElementById('menuToggle');
@@ -99,6 +172,21 @@ const setMenu = open => {
 toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
 nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+/* ── Project filters ── */
+document.querySelectorAll('#filters button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#filters button').forEach(x => x.classList.remove('on'));
+  b.classList.add('on');
+  document.querySelectorAll('.work').forEach(w =>
+    w.classList.toggle('hide', b.dataset.f !== 'all' && w.dataset.c !== b.dataset.f));
+}));
+
+/* ── Spotlight on service cards ── */
+document.querySelectorAll('.svc').forEach(c => c.addEventListener('mousemove', e => {
+  const r = c.getBoundingClientRect();
+  c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+  c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+}));
 
 /* ── Design gallery ──
    To add a poster:
@@ -122,19 +210,20 @@ const posters = [
 const base = 'assets/images/posters/thumbs/';
 const gallery = document.getElementById('gallery');
 gallery.innerHTML = posters.map((p, i) => `
-  <button type="button" data-i="${i}" aria-label="View larger: ${p.title}">
+  <button type="button" class="rv" data-i="${i}" aria-label="View larger: ${p.title}">
     <img src="${base}${p.file}.jpg" alt="${p.title}" loading="lazy" decoding="async">
   </button>`).join('');
 
 /* ── Lightbox ── */
-const lb      = document.getElementById('lightbox');
-const lbImg   = document.getElementById('lbImg');
-const lbCap   = document.getElementById('lbCaption');
+const lb    = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCap = document.getElementById('lbCaption');
 let current = 0;
 
 const show = i => {
   current = (i + posters.length) % posters.length;
   const p = posters[current];
+  lbImg.onerror = () => { lbImg.onerror = null; lbImg.src = `${base}${p.file}.jpg`; };  // fall back to thumb
   lbImg.src = `${base}${p.file}-lg.jpg`;
   lbImg.alt = p.title;
   lbCap.textContent = `${p.title}  (${current + 1} of ${posters.length})`;
@@ -155,12 +244,41 @@ lb.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight') show(current + 1);
 });
 
+/* ── Scroll reveal + counters ── */
+const animateCount = n => {
+  const to = +n.dataset.to, t0 = performance.now();
+  (function tick(t) {
+    const k = Math.min(1, (t - t0) / 1400);
+    n.textContent = Math.round(to * (1 - Math.pow(1 - k, 3)));
+    if (k < 1) requestAnimationFrame(tick);
+  })(t0);
+};
+const io = new IntersectionObserver(entries => entries.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in');
+  e.target.querySelectorAll('.count').forEach(n => reduceMotion ? (n.textContent = n.dataset.to) : animateCount(n));
+  io.unobserve(e.target);
+}), { threshold: .12 });
+document.querySelectorAll('.rv').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4) * 80 + 'ms';
+  io.observe(el);
+});
+
+/* ── Highlight the process step in view ── */
+const stepIO = new IntersectionObserver(entries => entries.forEach(e => {
+  if (!e.isIntersecting) return;
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  e.target.classList.add('active');
+}), { rootMargin: '-45% 0px -45% 0px' });
+document.querySelectorAll('.step').forEach(s => stepIO.observe(s));
+
 /* ── Contact form (Formspree) ── */
 const form   = document.getElementById('contactForm');
 const status = document.getElementById('formStatus');
 form.addEventListener('submit', async e => {
   e.preventDefault();
   const btn = form.querySelector('button[type="submit"]');
+  const label = btn.innerHTML;
   btn.disabled = true;
   btn.textContent = 'Sending…';
   status.className = 'form-status';
@@ -174,13 +292,13 @@ form.addEventListener('submit', async e => {
     if (!res.ok) throw new Error();
     form.reset();
     status.classList.add('ok');
-    status.textContent = "Message sent. I'll reply within 24 hours.";
+    status.textContent = "⚡ Message sent. I'll reply within 24 hours.";
   } catch {
     status.classList.add('err');
     status.textContent = "The message didn't send. Check your connection and try again, or reach me on WhatsApp.";
   } finally {
     btn.disabled = false;
-    btn.textContent = 'Send message';
+    btn.innerHTML = label;
   }
 });
 
