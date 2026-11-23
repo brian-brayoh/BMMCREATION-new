@@ -3,47 +3,24 @@
 document.documentElement.classList.add('js');
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ── Loader ── */
-(() => {
-  const loader = document.getElementById('loader');
-  const pct = document.getElementById('pct');
-  const bar = document.getElementById('lbar');
-  const finish = () => {
-    loader.classList.add('done');
-    document.body.classList.add('ready');
-    setTimeout(() => loader.remove(), 1000);
-  };
-  if (reduceMotion) return finish();
-  let p = 0;
-  const t = setInterval(() => {
-    p = Math.min(100, p + Math.ceil(Math.random() * 14));
-    pct.textContent = p;
-    bar.style.width = p + '%';
-    if (p >= 100) { clearInterval(t); setTimeout(finish, 250); }
-  }, 70);
-})();
+/* ── Reveal the hero headline straight away (no loader) ── */
+requestAnimationFrame(() => document.body.classList.add('ready'));
 
-/* ── Cursor glow + dot ── */
+/* ── Cursor glow (desktop only) ── */
 (() => {
-  if (reduceMotion || matchMedia('(hover: none)').matches) return;
+  if (reduceMotion || matchMedia('(hover: none), (max-width: 900px)').matches) return;
   const glow = document.getElementById('glow');
-  const dot = document.getElementById('dot');
   let mx = innerWidth / 2, my = innerHeight / 2, gx = mx, gy = my;
-  addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
-  }, { passive: true });
+  addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; }, { passive: true });
   (function loop() {
     gx += (mx - gx) * .08; gy += (my - gy) * .08;
     glow.style.transform = `translate(${gx - 210}px,${gy - 210}px)`;
     requestAnimationFrame(loop);
   })();
-  document.addEventListener('mouseover', e =>
-    dot.classList.toggle('big', !!e.target.closest('a, button, .chip, summary, .opts label')));
 })();
 
 /* ── Hero schematic ───────────────────────────────────
-   1. After the loader, traces draw in from each pin and the chip powers on.
+   1. On load, traces draw in from each pin and the chip powers on.
    2. Then signals keep flowing: each wire fires a glowing pulse, sometimes
       into the chip, sometimes out to its pin.                            */
 (() => {
@@ -118,26 +95,6 @@ const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   };
 
   setTimeout(() => traces.forEach((_, i) => setTimeout(() => fire(i), i * 330 + Math.random() * 600)), 3400);
-})();
-
-/* ── Rotating word in the hero ── */
-(() => {
-  const rot = document.getElementById('rot');
-  if (!rot || reduceMotion) return;
-  const words = ['websites', 'admin dashboards', 'SaaS products', 'M-Pesa checkouts', 'school portals', 'posters & brands'];
-  let wi = 0;
-  setInterval(() => {
-    const next = words[++wi % words.length];
-    let s = rot.textContent;
-    const del = setInterval(() => {
-      s = s.slice(0, -1); rot.textContent = s;
-      if (!s) {
-        clearInterval(del);
-        let i = 0;
-        const typ = setInterval(() => { rot.textContent = next.slice(0, ++i); if (i === next.length) clearInterval(typ); }, 55);
-      }
-    }, 30);
-  }, 2800);
 })();
 
 /* ── Marquees ── */

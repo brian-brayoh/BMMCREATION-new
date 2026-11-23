@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BMM Creations | Websites, apps &amp; design in Nairobi</title>
-  <meta name="description" content="BMM Creations is Brian's Nairobi studio: websites, admin dashboards and SaaS products for Kenyan institutions and businesses, with M-Pesa payments, plus posters and brand design." />
+  <title>BMM Creations | Web Design &amp; Development in Nairobi, Kenya</title>
+  <meta name="description" content="Web design and development in Nairobi, Kenya. BMM Creations builds fast websites, school portals and business systems with M-Pesa payments and an admin area your staff can update. From KES 15,000." />
   <meta name="theme-color" content="#0b0f19" />
 
-  <meta property="og:title" content="BMM Creations | Websites, apps &amp; design in Nairobi" />
+  <meta property="og:title" content="BMM Creations | Web Design &amp; Development in Nairobi, Kenya" />
   <meta property="og:description" content="Websites, dashboards and SaaS products for Kenyan institutions and businesses." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="assets/images/brand/logo-full.png" />
@@ -15,24 +15,32 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800;900&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css?v=8" />
+  <link rel="stylesheet" href="assets/css/style.css?v=9" />
   <link rel="icon" type="image/png" href="assets/images/brand/favicon.png" />
   <link rel="apple-touch-icon" href="assets/images/brand/apple-touch-icon.png" />
+
+  <!-- Helps Google show BMM Creations for local searches like "web design Nairobi" -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "BMM Creations",
+    "description": "Web design and development, web apps, M-Pesa integration and graphic design for schools and businesses in Kenya.",
+    "telephone": "+254746404011",
+    "email": "mmuthomibrian@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Nairobi", "addressCountry": "KE" },
+    "areaServed": "Kenya",
+    "priceRange": "From KES 15,000",
+    "founder": { "@type": "Person", "name": "Brian" },
+    "sameAs": ["https://github.com/brian-brayoh"]
+  }
+  </script>
 </head>
 <body>
 
 <a class="skip-link" href="#main">Skip to content</a>
 
-<!-- ─── Loader ─────────────────────────────────── -->
-<div class="loader" id="loader" aria-hidden="true">
-  <div class="loader-inner">
-    <div class="display grad loader-word">BMM<span id="pct">0</span></div>
-    <div class="loader-bar"><i id="lbar"></i></div>
-  </div>
-</div>
-
 <div class="cursor-glow" id="glow" aria-hidden="true"></div>
-<div class="cursor-dot" id="dot" aria-hidden="true"></div>
 
 <!-- ─── Navigation ─────────────────────────────── -->
 <header class="site-header" id="siteHeader">
@@ -68,26 +76,31 @@
 
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p class="tag mono"><span class="live" aria-hidden="true"></span>Nairobi, Kenya · Taking new projects</p>
+      <p class="tag mono"><span class="live" aria-hidden="true"></span>Web design &amp; development · Nairobi, Kenya</p>
       <h1 class="display">
-        <span class="line"><span>Web systems</span></span>
-        <span class="line"><span>wired with</span></span>
-        <span class="line"><span class="grad">high voltage.</span></span>
+        <span class="line"><span>Websites that</span></span>
+        <span class="line"><span>grow your</span></span>
+        <span class="line"><span class="grad">business.</span></span>
       </h1>
       <p class="hero-lede">
-        I'm Brian, a software engineer in Nairobi. BMM Creations designs and ships
-        <span class="rotator" id="rot">websites</span><br>
-        for Kenyan schools and businesses, with M&#8209;Pesa payments, proper databases
-        and <b>code that keeps running long after launch day.</b>
+        Fast websites, school portals and business systems for schools, SACCOs and shops across Kenya,
+        with <b>M&#8209;Pesa payments built in</b> and <b>an admin area your own staff can update.</b>
+        Designed and built in Nairobi by Brian, a software engineer.
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Start a project <span class="arr">→</span></a>
         <a href="#work" class="btn">See the work</a>
       </div>
+      <ul class="hero-proof">
+        <li><b>From KES 15,000</b><span>Fixed written quote</span></li>
+        <li><b>1–3 weeks</b><span>Typical website launch</span></li>
+        <li><b>24h</b><span>Reply on WhatsApp</span></li>
+      </ul>
+      <p class="trusted mono">Trusted by <span>Murang'a TTI</span><span>Ndia TVC</span></p>
     </div>
 
     <!-- Schematic: traces draw in on load, then the chip powers on -->
-    <figure class="schematic" aria-label="Circuit diagram of the tools Brian builds with: Next.js, TypeScript, PostgreSQL, Prisma, Tailwind CSS and M-Pesa, all wired into one chip labelled BMM.">
+    <figure class="schematic" aria-hidden="true">
       <svg viewBox="0 0 560 520" role="img" aria-hidden="true">
         <g class="traces">
           <path d="M20 70 H190 L240 120 V190" />
@@ -138,7 +151,7 @@
       <div>
         <span class="mono eyebrow">✦ Selected work</span>
         <h2 class="display">Live systems, <span class="grad">real users.</span></h2>
-        <p>Designed, built and deployed by me. Click through, they're live.</p>
+        <p>Websites and systems I've built for Kenyan institutions and businesses. Click through, they're live.</p>
       </div>
       <div class="filters" id="filters" role="group" aria-label="Filter projects">
         <button type="button" class="on" data-f="all">All</button>
@@ -246,8 +259,8 @@
   <div class="wrap">
     <header class="section-head rv">
       <div>
-        <span class="mono eyebrow">✦ What I build</span>
-        <h2 class="display">Four ways to make you <span class="grad">unmissable.</span></h2>
+        <span class="mono eyebrow">✦ Services · Nairobi &amp; across Kenya</span>
+        <h2 class="display">Everything your business needs <span class="grad">online.</span></h2>
       </div>
       <p>One person from first call to launch day, so you talk to the developer writing your code.</p>
     </header>
@@ -314,6 +327,37 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
   </button>
 </dialog>
+
+<!-- ─── Testimonials ───────────────────────────────
+     HIDDEN until you add REAL quotes from real clients.
+     1. Replace each quote, name and role below (ask MTTI / Ndia TVC staff for 1–2 sentences).
+     2. Delete any card you don't have a quote for.
+     3. Remove the word  hidden  from the <section> tag below.
+     ─────────────────────────────────────────────── -->
+<section class="section" id="testimonials" hidden>
+  <div class="wrap">
+    <header class="section-head rv">
+      <div>
+        <span class="mono eyebrow">✦ What clients say</span>
+        <h2 class="display">Don't take <span class="grad">my word</span> for it.</h2>
+      </div>
+    </header>
+    <div class="quotes">
+      <figure class="quote rv">
+        <blockquote>CLIENT QUOTE HERE: one or two sentences about the result.</blockquote>
+        <figcaption><b>Full Name</b><span>Role, Murang'a Technical Training Institute</span></figcaption>
+      </figure>
+      <figure class="quote rv">
+        <blockquote>CLIENT QUOTE HERE: one or two sentences about the result.</blockquote>
+        <figcaption><b>Full Name</b><span>Role, Ndia Technical and Vocational College</span></figcaption>
+      </figure>
+      <figure class="quote rv">
+        <blockquote>CLIENT QUOTE HERE: one or two sentences about the result.</blockquote>
+        <figcaption><b>Full Name</b><span>Role, Business name</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
 <!-- ─── Process ────────────────────────────────── -->
 <section class="section" id="process">
@@ -488,6 +532,6 @@
 </a>
 <button class="totop" id="totop" aria-label="Back to top">↑</button>
 
-<script src="assets/js/main.js?v=7"></script>
+<script src="assets/js/main.js?v=9"></script>
 </body>
 </html>
